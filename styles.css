@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 45px auto 45px;
+}
+
+main {
+  overflow: auto;
+}
+
+article {
+    margin: 20px;
+}
+
+
