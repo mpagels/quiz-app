@@ -38,6 +38,7 @@ header span {
 main {
   overflow: auto;
   padding: 35px;
+  z-index: -1;
 }
 
 footer {
