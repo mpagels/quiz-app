@@ -35,7 +35,7 @@ header span {
 }
 
 main {
-  overflow: auto;
+  overflow: scroll;
   padding: 35px;
   z-index: -1;
 }
@@ -45,6 +45,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 0 -3px 5px rgba(57, 63, 72, 0.3);
 }
 
 article {
@@ -131,7 +132,7 @@ span ul li:first-of-type {
   margin-left: 0;
 }
 
-section .answer {
+section .show-answer {
   padding-top: 40px;
   display: flex;
   justify-content: center;
@@ -139,7 +140,12 @@ section .answer {
   background-color: #ededed;
 }
 
-section .answer span {
+section + .answer {
+  background-color: #f7f7f7;
+  font-weight: 300;
+}
+
+section .show-answer span {
   font-size: 20px;
   font-weight: 300;
 }
