@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@300&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -7,19 +9,118 @@ html {
 }
 
 body {
+  font-size: 112.5%;
+  font-family: 'Roboto', sans-serif;
   margin: 0 0;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 45px auto 45px;
+  grid-template-rows: 65px auto 65px;
+  background-color:#F3F6F9;
+}
+
+body > header {
+  
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: larger;
+  background-color:#FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+header span {
+  margin: auto 0;
 }
 
 main {
   overflow: auto;
+  padding: 35px;
 }
 
+footer {
+  background-color: #FFFFFF;
+}
 article {
     margin: 20px;
 }
 
+nav ul  {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
 
+nav ul li {
+  list-style: none;
+}
+
+div:last-child {
+  margin-bottom: 70px;
+}
+.card {
+  
+  box-shadow: 0px 4px 6px 0px hsla(0,0%,0%,0.2);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.bookmark-active {
+  position: relative;
+  top: 40px;
+  left: 244px
+}
+.container {
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.container section {
+  padding: 40px 30px 40px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25px;
+}
+
+span ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 0px;
+  align-items: center;
+}
+
+span ul li {
+  margin: 0 5px;
+  list-style-type: none;
+  padding: 3px 12px;
+  background-color: #23343F ;
+  color: white;
+  font-weight: 800;
+  border-radius: 7px;
+  font-size: small;
+}
+
+span ul li:first-of-type {
+  margin-left: 0;
+}
+
+section .answer {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  
+  background-color: #EDEDED;
+}
+
+section .answer span {
+  font-size: 20px;
+  font-weight: 300;
+}
