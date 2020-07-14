@@ -16,15 +16,14 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 65px auto 65px;
-  background-color:#F3F6F9;
+  background-color: #f3f6f9;
 }
 
 body > header {
-  
   text-align: center;
   font-family: 'Oswald', sans-serif;
   font-size: larger;
-  background-color:#FFFFFF;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,17 +41,17 @@ main {
 }
 
 footer {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 article {
-    margin: 20px;
+  margin: 20px;
 }
 
-nav ul  {
+nav ul {
   margin: 0;
   padding: 0;
   display: flex;
@@ -68,8 +67,7 @@ div:last-child {
   margin-bottom: 70px;
 }
 .card {
-  
-  box-shadow: 0px 4px 6px 0px hsla(0,0%,0%,0.2);
+  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -79,10 +77,9 @@ div:last-child {
 .bookmark-active {
   position: relative;
   top: 40px;
-  left: 244px
+  left: 244px;
 }
 .container {
-  
   display: flex;
   flex-direction: column;
 }
@@ -105,8 +102,8 @@ span ul {
 span ul li {
   margin: 0 5px;
   list-style-type: none;
-  padding: 3px 12px;
-  background-color: #23343F ;
+  padding: 2px 16px;
+  background-color: #23343f;
   color: white;
   font-weight: 800;
   border-radius: 7px;
@@ -121,8 +118,8 @@ section .answer {
   padding-top: 40px;
   display: flex;
   justify-content: center;
-  
-  background-color: #EDEDED;
+
+  background-color: #ededed;
 }
 
 section .answer span {
