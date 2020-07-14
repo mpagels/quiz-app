@@ -42,7 +42,11 @@ main {
 
 footer {
   background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
 article {
     margin: 20px;
 }
