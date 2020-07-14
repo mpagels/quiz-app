@@ -7,34 +7,93 @@
     <title>Quiz - App | Profile</title>
   </head>
   <body>
-    <header>
-      PROFILE
+    <header class="header">
+      <span class="header__title">PROFILE</span>
     </header>
 
     <main>
-      Profilfoto - name
-
-      <article>
-        <section>
-          About yourself
-        </section>
-      </article>
-
-      <article>
-        <section>
-          Tags about skills
-          <section>
-            tags
+      <section class="card">
+        <button class="bookmark-active">
+          <img src="images/buttons/round_bookmark_black_48dp.png" />
+        </button>
+        <section class="card__content">
+          <section class="card__question">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
+            vitae!
+            <span>
+              <ul>
+                <li class="tags">HTML</li>
+                <li class="tags">CSS</li>
+                <li class="tags">Basics</li>
+                <li class="tags">SASS</li>
+              </ul>
+            </span>
+          </section>
+          <section class="show-answer">
+            <span>Show Answer</span>
           </section>
         </section>
-      </article>
+      </section>
 
-      <button>Logout</button>
+      <section class="card">
+        <button class="bookmark-active">
+          <img src="images/buttons/round_bookmark_black_48dp.png" />
+        </button>
+        <section class="card__content">
+          <section class="card__question">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
+            vitae!!!
+            <span>
+              <ul>
+                <li class="tags">HTML</li>
+                <li class="tags">CSS</li>
+                <li class="tags">Basics</li>
+              </ul>
+            </span>
+          </section>
+          <section class="answer">
+            Lorem ipsum dolor sit, amet consectetur adipisicing.
+          </section>
+          <section class="show-answer">
+            <span>Hide Answer</span>
+          </section>
+        </section>
+      </section>
     </main>
 
     <footer>
-      <a href="index.html"> QUIZ </a> - <a href="bookmarks.html">BOOKMARKS</a> -
-      <a href="create.html">CREATE</a> - <a href="profile.html">PROFILE</a>
+      <nav>
+        <ul class="nav__liste">
+          <li>
+            <a href="index.html">
+              <img src="images/buttons/round_home_black_48dp.png" /><span
+                >Home</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="bookmarks.html"
+              ><img src="images/buttons/round_bookmarks_black_48dp.png" /><span
+                >Saved</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="create.html"
+              ><img src="images/buttons/round_add_box_black_48dp.png" /><span
+                >Add</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="profile.html"
+              ><img
+                src="images/buttons/round_account_box_black_48dp.png"
+              /><span>Profile</span></a
+            >
+          </li>
+        </ul>
+      </nav>
     </footer>
   </body>
 </html>
