@@ -25,10 +25,13 @@ footer {
 button {
   display: block;
   font-size: 1em;
+  font-weight: 500;
   padding: 10px;
   margin: 0 auto;
   border: none;
   cursor: pointer;
+  background-color: #23343f;
+  color: hsl(204, 29%, 84%);
 }
 
 .header {
@@ -45,6 +48,7 @@ button {
 
 .header__title {
   margin: auto 0;
+  color: #23343f;
 }
 
 main {
