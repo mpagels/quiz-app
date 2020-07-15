@@ -37,7 +37,10 @@ input {
   height: 25px;
   padding: 0 8px 0 8px;
   margin: 10px 30px 15px 30px;
-  padding: 40px 30px 0 30px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 4px hsl(204, 29%, 29%);
+  }
 }
 
 [for] {
