@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@300&display=swap');
 @import './utility';
 @import './base';
+@import './card';
+@import './profile';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -80,139 +82,12 @@ li > a > span {
   margin-top: 3px;
 }
 
-.card {
-  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  margin-bottom: 35px;
-}
-
-.bookmark-active {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  margin-right: 0;
-  margin-top: -15px;
-  margin-bottom: -40px;
-  margin-right: 10px;
-}
-.card__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.card__question {
-  padding: 40px 30px 40px 30px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 25px;
-}
-
-span ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 0px;
-  align-items: center;
-}
-
-.tags {
-  margin: 2px 5px;
-  list-style-type: none;
-  padding: 2px 16px;
-  background-color: #23343f;
-  color: white;
-  font-weight: 800;
-  border-radius: 7px;
-  font-size: small;
-}
-
-// span ul li:first-of-type {
-//   margin-left: 0;
-// }
-
-.show-answer {
-  padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  background-color: #ededed;
-}
-
-.answer {
-  background-color: #f7f7f7;
-  font-weight: 300;
-  padding: 40px 30px;
-}
-
 // section .show-answer span {
 //   font-size: 20px;
 //   font-weight: 300;
 // }
 
 /* profile style */
-
-.profil__skills > h4 {
-  margin-bottom: 5px;
-}
-
-.profil {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.profil__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.profil__header--foto {
-  height: 140px;
-  border-radius: 50%;
-  margin: 20px;
-  border: 5px solid white;
-}
-
-.profil__name {
-  font-weight: 900;
-  font-size: larger;
-  margin-right: 20px;
-}
-
-.profil__about {
-  margin: 0 20px 0px 20px;
-  font-size: medium;
-}
-
-.profil__skills {
-  margin: 0px 20px;
-}
-
-.skill__liste {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0px;
-  margin: 8px 0 8px 0;
-}
-
-.profil__logout {
-  margin-top: 10px;
-}
-
-.logout__button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 35%;
-  color: white;
-  font-weight: 700;
-  font-size: larger;
-  background-color: #23343f;
-  padding: 15px 40px;
-  border-radius: 5px;
-}
 
 /* style create.html */
 
