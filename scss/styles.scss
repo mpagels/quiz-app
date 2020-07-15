@@ -44,7 +44,7 @@ button {
   align-items: center;
   justify-content: center;
   box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  z-index: +1;
+  z-index: +2;
 }
 
 .header__title {
@@ -56,6 +56,7 @@ button {
 main {
   overflow: scroll;
   padding: 35px;
+  z-index: 0;
 }
 
 .nav__liste {
@@ -64,9 +65,20 @@ main {
   display: flex;
   justify-content: space-around;
   align-content: center;
+
+  &--active {
+    position: absolute;
+    width: 66px;
+    height: 5px;
+    background-color: #23343f;
+    //top: -11.25px;
+    left: -15px;
+    bottom: -11.25px;
+  }
 }
 
 .nav__liste li {
+  position: relative;
   list-style: none;
   display: flex;
   flex-direction: column;
