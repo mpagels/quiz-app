@@ -81,6 +81,7 @@ main {
   margin-right: auto;
   width: 100%;
   align-items: center;
+  align-content: flex-start;
 
   @media (min-width: 768px) {
     flex-direction: row;
