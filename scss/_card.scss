@@ -5,27 +5,29 @@
   flex-direction: column;
   background-color: white;
   margin-bottom: 35px;
-}
 
-.card__bookmark--active {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  margin-right: 0;
-  margin-top: -15px;
-  margin-bottom: -40px;
-  margin-right: 10px;
-}
-.card__content {
-  display: flex;
-  flex-direction: column;
-}
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+  &__question {
+    padding: 40px 30px 40px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 25px;
+  }
 
-.card__question {
-  padding: 40px 30px 40px 30px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 25px;
+  &__bookmark {
+    &--active {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      margin-right: 0;
+      margin-top: -15px;
+      margin-bottom: -40px;
+      margin-right: 10px;
+    }
+  }
 }
 
 span ul {
