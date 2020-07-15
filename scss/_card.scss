@@ -7,9 +7,11 @@
   background-color: white;
   margin-bottom: 35px;
 
-  @media (min-width: 400px) {
-    width: 342px;
+  @media (min-width: 375px) {
+    max-width: 305px;
+    min-width: 305px;
   }
+
   &__content {
     display: flex;
     flex-direction: column;
