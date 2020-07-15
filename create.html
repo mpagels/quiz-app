@@ -18,15 +18,24 @@
           <section class="create__title">New Card</section>
           <section class="create__question">
             <label for="question">Add Question:</label><br />
-            <textarea name="question" rows="5" cols="5"></textarea>
+            <textarea
+              name="question"
+              rows="5"
+              placeholder="E.g: Which hotkeys are for up and down in vim?"
+            ></textarea>
           </section>
           <section class="create__answer">
             <label for="answer">Add Answer:</label><br />
-            <textarea name="answer" rows="5"></textarea>
+            <textarea name="answer" rows="5" placeholder="Answer"></textarea>
           </section>
-          <section class="create_tags">
+          <section class="create__tags">
             <label for="tags">Add Tags:</label><br />
-            <input type="text" id="tags" name="tags" />
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              placeholder="Tags, comma seperated"
+            />
           </section>
           <section class="card__button">
             <button class="card__button--submit"></button>

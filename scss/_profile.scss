@@ -1,4 +1,9 @@
 .profil {
+  @media (min-width: 375px) {
+    max-width: 305px;
+    min-width: 305px;
+  }
+
   & .profil {
     display: flex;
     flex-direction: column;
