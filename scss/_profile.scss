@@ -1,60 +1,63 @@
-.profil .profil {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-
-  &__skills > h4 {
-    margin-bottom: 5px;
-  }
-
-  &__header {
+.profil {
+  & .profil {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    &__skills > h4 {
+      margin: 0;
+      margin-bottom: 5px;
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    &__foto {
+      height: 140px;
+      border-radius: 50%;
+      margin: 20px;
+      border: 5px solid white;
+    }
+
+    &__name {
+      font-weight: 900;
+      font-size: larger;
+      margin-right: 20px;
+      color: #23343f;
+    }
+
+    &__about {
+      margin: 0 20px 0px 20px;
+      font-size: medium;
+    }
+
+    &__skills {
+      margin: 35px 20px;
+    }
+
+    &__logout {
+      margin-top: 10px;
+    }
   }
 
-  &__foto {
-    height: 140px;
-    border-radius: 50%;
-    margin: 20px;
-    border: 5px solid white;
-  }
-
-  &__name {
-    font-weight: 900;
-    font-size: larger;
-    margin-right: 20px;
-  }
-
-  &__about {
-    margin: 0 20px 0px 20px;
-    font-size: medium;
-  }
-
-  &__skills {
-    margin: 0px 20px;
-  }
-
-  &__logout {
-    margin-top: 10px;
-  }
-
-  &.logout__button {
+  .profil__logout .logout__button {
     display: flex;
     justify-content: space-between;
-    margin-top: 35%;
-    color: white;
+    margin-top: 65px;
+    color: #dee7ed;
     font-weight: 700;
     font-size: larger;
     background-color: #23343f;
     padding: 15px 40px;
     border-radius: 5px;
   }
-}
-
-.skill__liste {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0px;
-  margin: 8px 0 8px 0;
+  .skill__liste {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0px;
+    margin: 18px 0 8px 0;
+  }
 }
