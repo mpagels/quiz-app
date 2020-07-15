@@ -1,39 +1,55 @@
-.profil__skills > h4 {
-  margin-bottom: 5px;
-}
-
-.profil {
+.profil .profil {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-}
 
-.profil__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
+  &__skills > h4 {
+    margin-bottom: 5px;
+  }
 
-.profil__foto {
-  height: 140px;
-  border-radius: 50%;
-  margin: 20px;
-  border: 5px solid white;
-}
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-.profil__name {
-  font-weight: 900;
-  font-size: larger;
-  margin-right: 20px;
-}
+  &__foto {
+    height: 140px;
+    border-radius: 50%;
+    margin: 20px;
+    border: 5px solid white;
+  }
 
-.profil__about {
-  margin: 0 20px 0px 20px;
-  font-size: medium;
-}
+  &__name {
+    font-weight: 900;
+    font-size: larger;
+    margin-right: 20px;
+  }
 
-.profil__skills {
-  margin: 0px 20px;
+  &__about {
+    margin: 0 20px 0px 20px;
+    font-size: medium;
+  }
+
+  &__skills {
+    margin: 0px 20px;
+  }
+
+  &__logout {
+    margin-top: 10px;
+  }
+
+  &.logout__button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35%;
+    color: white;
+    font-weight: 700;
+    font-size: larger;
+    background-color: #23343f;
+    padding: 15px 40px;
+    border-radius: 5px;
+  }
 }
 
 .skill__liste {
@@ -41,20 +57,4 @@
   flex-wrap: wrap;
   padding-left: 0px;
   margin: 8px 0 8px 0;
-}
-
-.profil__logout {
-  margin-top: 10px;
-}
-
-.logout__button {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 35%;
-  color: white;
-  font-weight: 700;
-  font-size: larger;
-  background-color: #23343f;
-  padding: 15px 40px;
-  border-radius: 5px;
 }
