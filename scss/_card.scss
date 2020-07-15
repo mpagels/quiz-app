@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   border-radius: 12px;
   display: flex;
@@ -19,13 +20,26 @@
 
   &__bookmark {
     &--active {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background-image: url(images/buttons/round_bookmark_black_48dp.png);
+      width: 48px;
+      height: 48px;
       background-color: transparent;
       border: none;
       padding: 0;
-      margin-right: 0;
-      margin-top: -15px;
-      margin-bottom: -40px;
-      margin-right: 10px;
+    }
+    &--inactive {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background-image: url(images/buttons/round_bookmark_border_black_48dp.png);
+      width: 48px;
+      height: 48px;
+      background-color: transparent;
+      border: none;
+      padding: 0;
     }
   }
 }
