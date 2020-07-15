@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@0,300;0,700;1,500&display=swap');
 @import './utility';
 @import './base';
 @import './card';
@@ -30,8 +30,8 @@ button {
   margin: 0 auto;
   border: none;
   cursor: pointer;
-  background-color: #23343f;
-  color: hsl(204, 29%, 84%);
+  background-color: hsl(204, 29%, 29%);
+  color: hsl(204, 29%, 90%);
 }
 
 .header {
@@ -49,6 +49,7 @@ button {
 .header__title {
   margin: auto 0;
   color: #23343f;
+  font-weight: 800;
 }
 
 main {
@@ -83,6 +84,7 @@ li > a > span {
   font-size: small;
   font-weight: 800;
   margin-top: 3px;
+  color: #23343f;
 }
 
 // section .show-answer span {
