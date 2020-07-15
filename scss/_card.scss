@@ -44,12 +44,23 @@
   }
 
   &__button {
-    display: block;
-    font-size: 1em;
-    padding: 10px;
-    margin: 0 auto;
-    border: none;
-    cursor: pointer;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    background-color: hsl(204, 29%, 29%);
+    border-radius: 0 0 12px 12px;
+
+    &--show-answer::after {
+      content: 'Show Answer';
+    }
+
+    &--hide-answer::after {
+      content: 'Hide Answer';
+    }
+
+    &--submit::after {
+      content: 'Submit';
+    }
   }
 }
 
@@ -77,11 +88,12 @@ span ul {
 // }
 
 .show-answer {
-  padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  background-color: hsl(204, 29%, 29%);
-  border-radius: 0 0 12px 12px;
+  display: block;
+  font-size: 1em;
+  padding: 10px;
+  margin: 0 auto;
+  border: none;
+  cursor: pointer;
 }
 
 .answer {
