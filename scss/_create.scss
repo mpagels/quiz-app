@@ -27,6 +27,9 @@ textarea {
   margin: 5px 30px 15px 30px;
   box-shadow: 0 0 2px rgba(57, 63, 72, 0.3);
   resize: vertical;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12x;
+  font-weight: 400;
   &:focus {
     outline: none;
     box-shadow: 0 0 4px hsl(204, 29%, 29%);
