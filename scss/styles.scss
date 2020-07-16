@@ -7,6 +7,7 @@
 @import './nav';
 @import './header';
 @import './header';
+@import './button';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -16,18 +17,6 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 65px auto 75px;
   background-color: #f3f6f9;
-}
-
-button {
-  display: block;
-  font-size: 1em;
-  font-weight: 500;
-  padding: 10px;
-  margin: 0 auto;
-  border: none;
-  cursor: pointer;
-  background-color: hsl(204, 29%, 29%);
-  color: hsl(204, 29%, 90%);
 }
 
 main {
