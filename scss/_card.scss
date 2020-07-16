@@ -7,6 +7,16 @@
   background-color: white;
   margin-bottom: 35px;
 
+  &:last-child::after {
+    content: '';
+    width: 1px;
+    height: 70px;
+    background: #f3f6f9;
+    position: absolute;
+    bottom: -30px;
+    z-index: -1;
+  }
+
   @media (min-width: 375px) {
     max-width: 305px;
     min-width: 305px;
