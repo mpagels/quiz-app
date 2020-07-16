@@ -6,6 +6,7 @@
 @import './create';
 @import './nav';
 @import './header';
+@import './header';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -15,15 +16,6 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 65px auto 75px;
   background-color: #f3f6f9;
-}
-
-footer {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 -3px 5px rgba(57, 63, 72, 0.3);
-  z-index: +1;
 }
 
 button {
