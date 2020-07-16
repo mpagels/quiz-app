@@ -1,0 +1,84 @@
+.nav__liste--hover {
+  position: relative;
+}
+
+.nav__liste--hover > div {
+  position: absolute;
+  width: 66px;
+  height: 3px;
+  background-color: #ffffff;
+  left: -15px;
+  bottom: -11.25px;
+}
+
+.nav__liste--hover:hover > div {
+  background-color: #23343f;
+}
+
+nav {
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.nav__liste {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+
+  &--active {
+    position: absolute;
+    width: 66px;
+    height: 5px;
+    background-color: #23343f;
+    //top: -11.25px;
+    left: -15px;
+    bottom: -11.25px;
+  }
+
+  @media (min-width: 768px) {
+    width: 768px;
+  }
+}
+
+// .nav__liste--hover:hover {
+//     background-color: red;
+//     position: absolute;
+//     width: 66px;
+//     height: 5px;
+//     background-color: #23343f;
+//     //top: -11.25px;
+//     left: -15px;
+//     bottom: -11.25px;
+//   }
+
+.nav__liste li {
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+li > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+li > a > span {
+  font-size: small;
+  font-weight: 800;
+  margin-top: 3px;
+  color: #23343f;
+}
+
+// section .show-answer span {
+//   font-size: 20px;
+//   font-weight: 300;
+// }

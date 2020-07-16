@@ -1,4 +1,4 @@
 # Quiz-App
 
-Live:  
+Live:
 https://mpagels.github.io/quiz-app/
