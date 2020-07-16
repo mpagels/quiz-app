@@ -5,6 +5,7 @@
 @import './profile';
 @import './create';
 @import './nav';
+@import './header';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -35,24 +36,6 @@ button {
   cursor: pointer;
   background-color: hsl(204, 29%, 29%);
   color: hsl(204, 29%, 90%);
-}
-
-.header {
-  text-align: center;
-  font-family: 'Oswald', sans-serif;
-  font-size: larger;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  z-index: +2;
-}
-
-.header__title {
-  margin: auto 0;
-  color: #23343f;
-  font-weight: 800;
 }
 
 main {
