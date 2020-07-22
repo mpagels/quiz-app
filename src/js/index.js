@@ -144,24 +144,15 @@ showAnswerCard1.addEventListener('click', forCard(1))
 showAnswerCard2.addEventListener('click', forCard(2))
 showAnswerCard3.addEventListener('click', forCard(3))
 
+bookmark1.addEventListener('click', toggleBookmark(event))
+bookmark2.addEventListener('click', toggleBookmark(event))
+bookmark3.addEventListener('click', toggleBookmark(event))
+
 formButtonSubmit.addEventListener('click', (event) => {
   event.preventDefault()
   document.querySelector('textarea[name=question]').value = ''
   document.querySelector('textarea[name=answer]').value = ''
   document.querySelector('input[name=tags]').value = ''
-})
-
-bookmark1.addEventListener('click', () => {
-  bookmark1.classList.toggle('card__bookmark--active')
-  bookmark1.classList.toggle('card__bookmark--inactive')
-})
-bookmark2.addEventListener('click', () => {
-  bookmark2.classList.toggle('card__bookmark--active')
-  bookmark2.classList.toggle('card__bookmark--inactive')
-})
-bookmark3.addEventListener('click', () => {
-  bookmark3.classList.toggle('card__bookmark--active')
-  bookmark3.classList.toggle('card__bookmark--inactive')
 })
 
 // bookmarkButtons.forEach((bookmark) => {
@@ -213,5 +204,12 @@ function forCard(number) {
         showAnswerCard3.classList.remove('card__button--hide-answer')
       }
     }
+  }
+}
+
+function toggleBookmark(event) {
+  return (event) => {
+    event.target.classList.toggle('card__bookmark--active')
+    event.target.classList.toggle('card__bookmark--inactive')
   }
 }
