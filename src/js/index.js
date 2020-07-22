@@ -19,6 +19,7 @@ const navButtonHome = document.querySelector('[class*="btn-home"]')
 const navButtonSaved = document.querySelector('[class*="btn-bookmarks"]')
 const navButtonAdd = document.querySelector('[class*="btn-add"]')
 const navButtonProfile = document.querySelector('[class*="btn-profile"]')
+
 // button__cards-show/answer
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
 const showAnswerCard2 = document.querySelector('.btn__card--2 button')
@@ -44,28 +45,30 @@ const answerCard3 = document.querySelector('.answer__card-3')
 const createForm = document.querySelector('form')
 
 // EVENTS
-
 navButtonHome.addEventListener('click', () => {
   headerTitle.textContent = 'QUIZ - APP'
+
   mainIndex.classList.remove('hidden')
   mainBookmark.classList.add('hidden')
   mainCreate.classList.add('hidden')
   mainProfile.classList.add('hidden')
 
-  navButtonHome.classList.toggle('btn-home--active')
-  navButtonHome.classList.toggle('btn-home--deactive')
   navButtonHome.src = HOME_ACTIVE
   navButtonSaved.src = SAVED_INACTIVE
   navButtonAdd.src = ADD_INACTIVE
   navButtonProfile.src = PROFILE_INACTIVE
+
+  navButtonHome.classList.toggle('btn-home--active')
+  navButtonHome.classList.toggle('btn-home--deactive')
+
   navButtonSaved.classList.remove('btn-bookmarks--active')
   navButtonAdd.classList.remove('btn-add--active')
-
   navButtonProfile.classList.remove('btn-profile--active')
   navButtonSaved.classList.add('btn-bookmarks--deactive')
   navButtonAdd.classList.add('btn-add--deactive')
   navButtonProfile.classList.add('btn-profile--deactive')
 })
+
 navButtonSaved.addEventListener('click', () => {
   headerTitle.textContent = 'BOOKMARKS'
 
@@ -78,6 +81,7 @@ navButtonSaved.addEventListener('click', () => {
   navButtonSaved.src = SAVED_ACTIVE
   navButtonAdd.src = ADD_INACTIVE
   navButtonProfile.src = PROFILE_INACTIVE
+
   navButtonSaved.classList.toggle('btn-bookmarks--active')
   navButtonSaved.classList.toggle('btn-bookmarks--deactive')
 
@@ -88,8 +92,10 @@ navButtonSaved.addEventListener('click', () => {
   navButtonProfile.classList.add('btn-profile--deactive')
   navButtonProfile.classList.remove('btn-profile--active')
 })
+
 navButtonAdd.addEventListener('click', () => {
   headerTitle.textContent = 'CREATE'
+
   mainIndex.classList.add('hidden')
   mainBookmark.classList.add('hidden')
   mainCreate.classList.remove('hidden')
@@ -99,6 +105,7 @@ navButtonAdd.addEventListener('click', () => {
   navButtonSaved.src = SAVED_INACTIVE
   navButtonAdd.src = ADD_ACTIVE
   navButtonProfile.src = PROFILE_INACTIVE
+
   navButtonAdd.classList.add('btn-add--active')
   navButtonAdd.classList.remove('btn-add--deactive')
 
@@ -111,6 +118,7 @@ navButtonAdd.addEventListener('click', () => {
 })
 navButtonProfile.addEventListener('click', () => {
   headerTitle.textContent = 'PROFILE'
+
   mainIndex.classList.add('hidden')
   mainBookmark.classList.add('hidden')
   mainCreate.classList.add('hidden')
@@ -120,6 +128,7 @@ navButtonProfile.addEventListener('click', () => {
   navButtonSaved.src = SAVED_INACTIVE
   navButtonAdd.src = ADD_INACTIVE
   navButtonProfile.src = PROFILE_ACTIVE
+
   navButtonProfile.classList.add('btn-profile--active')
   navButtonProfile.classList.remove('btn-profile--deactive')
 
