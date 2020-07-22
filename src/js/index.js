@@ -12,13 +12,13 @@ const navButtonAdd = document.querySelector('.btn-add')
 const navButtonProfile = document.querySelector('.btn-profile')
 
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
-
+const showAnswerCard2 = document.querySelector('.btn__card--2 button')
 //titleElement
 const headerTitle = document.querySelector('.header__title')
 
 //Answer sections
-const answerCard1 = document.querySelector('.main__index .answer')
-const answerCard2 = document.querySelector('.main__bookmark .answer')
+const answerCard1 = document.querySelector('.answer__card-1')
+const answerCard2 = document.querySelector('.answer__card-2')
 
 // EVENTS
 
@@ -62,13 +62,15 @@ showAnswerCard1.addEventListener('click', () => {
     showAnswerCard1.classList.remove('card__button--hide-answer')
   }
 })
-// hideAnswerCard1.addEventListener('click', () => {
-//   console.log('Hello World')
-//   answerCard1.classList.add('hidden')
-//   showAnswerCard1.classList.add('card__button--show-answer')
-//   showAnswerCard1.classList.remove('card__button--hide-answer')
-// })
 
-// function setHideClass() {
-//   document.querySelector('.btn__card--1 .card__button--hide-answer')
-// }
+showAnswerCard2.addEventListener('click', () => {
+  if (showAnswerCard2.classList.contains('card__button--show-answer')) {
+    answerCard2.classList.remove('hidden')
+    showAnswerCard2.classList.remove('card__button--show-answer')
+    showAnswerCard2.classList.add('card__button--hide-answer')
+  } else {
+    answerCard2.classList.add('hidden')
+    showAnswerCard2.classList.add('card__button--show-answer')
+    showAnswerCard2.classList.remove('card__button--hide-answer')
+  }
+})
