@@ -5,10 +5,10 @@ const mainCreate = document.querySelector('.main__create')
 const mainProfile = document.querySelector('.main__profile')
 
 // button__nav
-const navButtonHome = document.querySelector('.btn-home')
-const navButtonSaved = document.querySelector('.btn-bookmarks')
-const navButtonAdd = document.querySelector('.btn-add')
-const navButtonProfile = document.querySelector('.btn-profile')
+const navButtonHome = document.querySelector('[class*="btn-home"]')
+const navButtonSaved = document.querySelector('[class*="btn-bookmarks"]')
+const navButtonAdd = document.querySelector('[class*="btn-add"]')
+const navButtonProfile = document.querySelector('[class*="btn-profile"]')
 // button__cards-show/answer
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
 const showAnswerCard2 = document.querySelector('.btn__card--2 button')
