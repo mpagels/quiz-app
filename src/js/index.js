@@ -20,125 +20,35 @@ const navButtonSaved = get('[class*="btn-bookmarks"]')
 const navButtonAdd = get('[class*="btn-add"]')
 const navButtonProfile = get('[class*="btn-profile"]')
 
-// button__cards-show/answer
-const showAnswerCard1 = get('.btn__card--1 button')
-const showAnswerCard2 = get('.btn__card--2 button')
-const showAnswerCard3 = get('.btn__card--3 button')
-
 // button__cards_bookmark
 const bookmark1 = get('.card__bookmark1')
 const bookmark2 = get('.card__bookmark2')
 const bookmark3 = get('.card__bookmark3')
 
-// form
-const formButtonSubmit = get('.card__button--submit')
-
-// titleElement
-const headerTitle = get('.header__title')
+// button__cards-show/answer
+const showAnswerCard1 = get('.btn__card--1 button')
+const showAnswerCard2 = get('.btn__card--2 button')
+const showAnswerCard3 = get('.btn__card--3 button')
 
 // Answer sections
 const answerCard1 = get('.answer__card-1')
 const answerCard2 = get('.answer__card-2')
 const answerCard3 = get('.answer__card-3')
 
+// form
+const formButtonSubmit = get('.card__button--submit')
+
+// site headline
+const headerTitle = get('.header__title')
+
 // Form
 const createForm = get('form')
 
 // EVENTS
-navButtonHome.addEventListener('click', () => {
-  headerTitle.textContent = 'QUIZ - APP'
-
-  mainIndex.classList.remove('hidden')
-  mainBookmark.classList.add('hidden')
-  mainCreate.classList.add('hidden')
-  mainProfile.classList.add('hidden')
-
-  navButtonHome.src = HOME_ACTIVE
-  navButtonSaved.src = SAVED_INACTIVE
-  navButtonAdd.src = ADD_INACTIVE
-  navButtonProfile.src = PROFILE_INACTIVE
-
-  navButtonHome.classList.toggle('btn-home--active')
-  navButtonHome.classList.toggle('btn-home--deactive')
-
-  navButtonSaved.classList.remove('btn-bookmarks--active')
-  navButtonAdd.classList.remove('btn-add--active')
-  navButtonProfile.classList.remove('btn-profile--active')
-  navButtonSaved.classList.add('btn-bookmarks--deactive')
-  navButtonAdd.classList.add('btn-add--deactive')
-  navButtonProfile.classList.add('btn-profile--deactive')
-})
-
-navButtonSaved.addEventListener('click', () => {
-  headerTitle.textContent = 'BOOKMARKS'
-
-  mainIndex.classList.add('hidden')
-  mainBookmark.classList.remove('hidden')
-  mainCreate.classList.add('hidden')
-  mainProfile.classList.add('hidden')
-
-  navButtonHome.src = HOME_INACTIVE
-  navButtonSaved.src = SAVED_ACTIVE
-  navButtonAdd.src = ADD_INACTIVE
-  navButtonProfile.src = PROFILE_INACTIVE
-
-  navButtonSaved.classList.toggle('btn-bookmarks--active')
-  navButtonSaved.classList.toggle('btn-bookmarks--deactive')
-
-  navButtonAdd.classList.remove('btn-add--active')
-  navButtonAdd.classList.add('btn-add--deactive')
-  navButtonHome.classList.add('btn-home--deactive')
-  navButtonHome.classList.remove('btn-home--active')
-  navButtonProfile.classList.add('btn-profile--deactive')
-  navButtonProfile.classList.remove('btn-profile--active')
-})
-
-navButtonAdd.addEventListener('click', () => {
-  headerTitle.textContent = 'CREATE'
-
-  mainIndex.classList.add('hidden')
-  mainBookmark.classList.add('hidden')
-  mainCreate.classList.remove('hidden')
-  mainProfile.classList.add('hidden')
-
-  navButtonHome.src = HOME_INACTIVE
-  navButtonSaved.src = SAVED_INACTIVE
-  navButtonAdd.src = ADD_ACTIVE
-  navButtonProfile.src = PROFILE_INACTIVE
-
-  navButtonAdd.classList.add('btn-add--active')
-  navButtonAdd.classList.remove('btn-add--deactive')
-
-  navButtonSaved.classList.add('btn-bookmarks--deactive')
-  navButtonSaved.classList.remove('btn-bookmarks--active')
-  navButtonHome.classList.add('btn-home--deactive')
-  navButtonHome.classList.remove('btn-home--active')
-  navButtonProfile.classList.add('btn-profile--deactive')
-  navButtonProfile.classList.remove('btn-profile--active')
-})
-navButtonProfile.addEventListener('click', () => {
-  headerTitle.textContent = 'PROFILE'
-
-  mainIndex.classList.add('hidden')
-  mainBookmark.classList.add('hidden')
-  mainCreate.classList.add('hidden')
-  mainProfile.classList.remove('hidden')
-
-  navButtonHome.src = HOME_INACTIVE
-  navButtonSaved.src = SAVED_INACTIVE
-  navButtonAdd.src = ADD_INACTIVE
-  navButtonProfile.src = PROFILE_ACTIVE
-
-  navButtonProfile.classList.add('btn-profile--active')
-  navButtonProfile.classList.remove('btn-profile--deactive')
-
-  navButtonAdd.classList.remove('btn-add--active')
-  navButtonAdd.classList.add('btn-add--deactive')
-  navButtonSaved.classList.add('btn-bookmarks--deactive')
-  navButtonSaved.classList.remove('btn-bookmarks--active')
-  navButtonHome.classList.add('btn-home--deactive')
-  navButtonHome.classList.remove('btn-home--active')
-})
+navButtonHome.addEventListener('click', navigateTo('QUIZ - APP'))
+navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS'))
+navButtonAdd.addEventListener('click', navigateTo('CREATE'))
+navButtonProfile.addEventListener('click', navigateTo('PROFILE'))
 
 showAnswerCard1.addEventListener('click', forCard(1))
 showAnswerCard2.addEventListener('click', forCard(2))
@@ -155,20 +65,108 @@ formButtonSubmit.addEventListener('click', (event) => {
   document.querySelector('input[name=tags]').value = ''
 })
 
-// bookmarkButtons.forEach((bookmark) => {
-//   bookmark.addEventListener('click', () => {
-//     if (bookmark.classList.contains('card__bookmark--active')) {
-//       bookmark.classList.remove('card__bookmark--active')
-//       bookmark.classList.add('card__bookmark--inactive')
-//     } else {
-//       bookmark.classList.add('card__bookmark--active')
-//       bookmark.classList.remove('card__bookmark--inactive')
-//     }
-//   })
-// })
-
 function get(selector) {
   return document.querySelector(selector)
+}
+
+function navigateTo(site) {
+  if (site === 'QUIZ - APP') {
+    return () => {
+      headerTitle.textContent = site
+
+      mainIndex.classList.remove('hidden')
+      mainBookmark.classList.add('hidden')
+      mainCreate.classList.add('hidden')
+      mainProfile.classList.add('hidden')
+
+      navButtonHome.src = HOME_ACTIVE
+      navButtonSaved.src = SAVED_INACTIVE
+      navButtonAdd.src = ADD_INACTIVE
+      navButtonProfile.src = PROFILE_INACTIVE
+
+      navButtonHome.classList.toggle('btn-home--active')
+      navButtonHome.classList.toggle('btn-home--deactive')
+
+      navButtonSaved.classList.remove('btn-bookmarks--active')
+      navButtonAdd.classList.remove('btn-add--active')
+      navButtonProfile.classList.remove('btn-profile--active')
+      navButtonSaved.classList.add('btn-bookmarks--deactive')
+      navButtonAdd.classList.add('btn-add--deactive')
+      navButtonProfile.classList.add('btn-profile--deactive')
+    }
+  } else if (site === 'BOOKMARKS') {
+    return () => {
+      headerTitle.textContent = site
+
+      mainIndex.classList.add('hidden')
+      mainBookmark.classList.remove('hidden')
+      mainCreate.classList.add('hidden')
+      mainProfile.classList.add('hidden')
+
+      navButtonHome.src = HOME_INACTIVE
+      navButtonSaved.src = SAVED_ACTIVE
+      navButtonAdd.src = ADD_INACTIVE
+      navButtonProfile.src = PROFILE_INACTIVE
+
+      navButtonSaved.classList.toggle('btn-bookmarks--active')
+      navButtonSaved.classList.toggle('btn-bookmarks--deactive')
+
+      navButtonAdd.classList.remove('btn-add--active')
+      navButtonAdd.classList.add('btn-add--deactive')
+      navButtonHome.classList.add('btn-home--deactive')
+      navButtonHome.classList.remove('btn-home--active')
+      navButtonProfile.classList.add('btn-profile--deactive')
+      navButtonProfile.classList.remove('btn-profile--active')
+    }
+  } else if (site === 'CREATE') {
+    return () => {
+      headerTitle.textContent = site
+
+      mainIndex.classList.add('hidden')
+      mainBookmark.classList.add('hidden')
+      mainCreate.classList.remove('hidden')
+      mainProfile.classList.add('hidden')
+
+      navButtonHome.src = HOME_INACTIVE
+      navButtonSaved.src = SAVED_INACTIVE
+      navButtonAdd.src = ADD_ACTIVE
+      navButtonProfile.src = PROFILE_INACTIVE
+
+      navButtonAdd.classList.add('btn-add--active')
+      navButtonAdd.classList.remove('btn-add--deactive')
+
+      navButtonSaved.classList.add('btn-bookmarks--deactive')
+      navButtonSaved.classList.remove('btn-bookmarks--active')
+      navButtonHome.classList.add('btn-home--deactive')
+      navButtonHome.classList.remove('btn-home--active')
+      navButtonProfile.classList.add('btn-profile--deactive')
+      navButtonProfile.classList.remove('btn-profile--active')
+    }
+  } else if (site === 'PROFILE') {
+    return () => {
+      headerTitle.textContent = site
+
+      mainIndex.classList.add('hidden')
+      mainBookmark.classList.add('hidden')
+      mainCreate.classList.add('hidden')
+      mainProfile.classList.remove('hidden')
+
+      navButtonHome.src = HOME_INACTIVE
+      navButtonSaved.src = SAVED_INACTIVE
+      navButtonAdd.src = ADD_INACTIVE
+      navButtonProfile.src = PROFILE_ACTIVE
+
+      navButtonProfile.classList.add('btn-profile--active')
+      navButtonProfile.classList.remove('btn-profile--deactive')
+
+      navButtonAdd.classList.remove('btn-add--active')
+      navButtonAdd.classList.add('btn-add--deactive')
+      navButtonSaved.classList.add('btn-bookmarks--deactive')
+      navButtonSaved.classList.remove('btn-bookmarks--active')
+      navButtonHome.classList.add('btn-home--deactive')
+      navButtonHome.classList.remove('btn-home--active')
+    }
+  }
 }
 
 function forCard(number) {
