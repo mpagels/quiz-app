@@ -1,4 +1,3 @@
-// get all main elements, buttons, titleElement
 // main elements
 const mainIndex = document.querySelector('.main__index')
 const mainBookmark = document.querySelector('.main__bookmark')
@@ -6,16 +5,21 @@ const mainCreate = document.querySelector('.main__create')
 const mainProfile = document.querySelector('.main__profile')
 
 // buttons
+//nav
 const navButtonHome = document.querySelector('.btn-home')
 const navButtonSaved = document.querySelector('.btn-bookmarks')
 const navButtonAdd = document.querySelector('.btn-add')
 const navButtonProfile = document.querySelector('.btn-profile')
-
+// cards
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
 const showAnswerCard2 = document.querySelector('.btn__card--2 button')
 const showAnswerCard3 = document.querySelector('.btn__card--3 button')
-
+const bookmarkButtons = document.querySelectorAll(
+  'button[class*=card__bookmark--]'
+)
+// form
 const formButtonSubmit = document.querySelector('.card__button--submit')
+
 //titleElement
 const headerTitle = document.querySelector('.header__title')
 
@@ -101,4 +105,16 @@ formButtonSubmit.addEventListener('click', (event) => {
   document.querySelector('textarea[name=question]').value = ''
   document.querySelector('textarea[name=answer]').value = ''
   document.querySelector('input[name=tags]').value = ''
+})
+
+bookmarkButtons.forEach((bookmark) => {
+  bookmark.addEventListener('click', () => {
+    if (bookmark.classList.contains('card__bookmark--active')) {
+      bookmark.classList.remove('card__bookmark--active')
+      bookmark.classList.add('card__bookmark--inactive')
+    } else {
+      bookmark.classList.add('card__bookmark--active')
+      bookmark.classList.remove('card__bookmark--inactive')
+    }
+  })
 })
