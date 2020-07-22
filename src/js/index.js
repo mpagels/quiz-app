@@ -14,6 +14,8 @@ const navButtonProfile = document.querySelector('.btn-profile')
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
 const showAnswerCard2 = document.querySelector('.btn__card--2 button')
 const showAnswerCard3 = document.querySelector('.btn__card--3 button')
+
+const formButtonSubmit = document.querySelector('.card__button--submit')
 //titleElement
 const headerTitle = document.querySelector('.header__title')
 
@@ -21,6 +23,9 @@ const headerTitle = document.querySelector('.header__title')
 const answerCard1 = document.querySelector('.answer__card-1')
 const answerCard2 = document.querySelector('.answer__card-2')
 const answerCard3 = document.querySelector('.answer__card-3')
+
+// Form
+const createForm = document.querySelector('form')
 
 // EVENTS
 
@@ -89,4 +94,11 @@ showAnswerCard2.addEventListener('click', () => {
     showAnswerCard2.classList.add('card__button--show-answer')
     showAnswerCard2.classList.remove('card__button--hide-answer')
   }
+})
+
+formButtonSubmit.addEventListener('click', (event) => {
+  event.preventDefault()
+  document.querySelector('textarea[name=question]').value = ''
+  document.querySelector('textarea[name=answer]').value = ''
+  document.querySelector('input[name=tags]').value = ''
 })
