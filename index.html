@@ -109,6 +109,38 @@
         </section>
       </section>
     </main>
+    <main class="main__create">
+      <section class="card">
+        <!-- class card can be found in card.scss -->
+        <form class="create__form">
+          <section class="create__title">New Card</section>
+          <section class="create__question">
+            <label for="question">Add Question:</label><br />
+            <textarea
+              name="question"
+              rows="5"
+              placeholder="E.g.: Which hotkeys are for up and down in vim?"
+            ></textarea>
+          </section>
+          <section class="create__answer">
+            <label for="answer">Add Answer:</label><br />
+            <textarea name="answer" rows="5" placeholder="Answer"></textarea>
+          </section>
+          <section class="create__tags">
+            <label for="tags">Add Tags:</label><br />
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              placeholder="Tags, comma seperated"
+            />
+          </section>
+          <section class="card__button">
+            <button class="card__button--submit"></button>
+          </section>
+        </form>
+      </section>
+    </main>
     <footer>
       <nav>
         <ul class="nav__liste">
