@@ -9,40 +9,40 @@ const PROFILE_ACTIVE = 'images/buttons/round_account_box_black_48dp.png'
 const PROFILE_INACTIVE = 'images/buttons/round_account_box_outline_48dp.png'
 
 // main elements
-const mainIndex = document.querySelector('.main__index')
-const mainBookmark = document.querySelector('.main__bookmark')
-const mainCreate = document.querySelector('.main__create')
-const mainProfile = document.querySelector('.main__profile')
+const mainIndex = get('.main__index')
+const mainBookmark = get('.main__bookmark')
+const mainCreate = get('.main__create')
+const mainProfile = get('.main__profile')
 
 // button__nav
-const navButtonHome = document.querySelector('[class*="btn-home"]')
-const navButtonSaved = document.querySelector('[class*="btn-bookmarks"]')
-const navButtonAdd = document.querySelector('[class*="btn-add"]')
-const navButtonProfile = document.querySelector('[class*="btn-profile"]')
+const navButtonHome = get('[class*="btn-home"]')
+const navButtonSaved = get('[class*="btn-bookmarks"]')
+const navButtonAdd = get('[class*="btn-add"]')
+const navButtonProfile = get('[class*="btn-profile"]')
 
 // button__cards-show/answer
-const showAnswerCard1 = document.querySelector('.btn__card--1 button')
-const showAnswerCard2 = document.querySelector('.btn__card--2 button')
-const showAnswerCard3 = document.querySelector('.btn__card--3 button')
+const showAnswerCard1 = get('.btn__card--1 button')
+const showAnswerCard2 = get('.btn__card--2 button')
+const showAnswerCard3 = get('.btn__card--3 button')
 
 // button__cards_bookmark
-const bookmark1 = document.querySelector('.card__bookmark1')
-const bookmark2 = document.querySelector('.card__bookmark2')
-const bookmark3 = document.querySelector('.card__bookmark3')
+const bookmark1 = get('.card__bookmark1')
+const bookmark2 = get('.card__bookmark2')
+const bookmark3 = get('.card__bookmark3')
 
 // form
-const formButtonSubmit = document.querySelector('.card__button--submit')
+const formButtonSubmit = get('.card__button--submit')
 
 // titleElement
-const headerTitle = document.querySelector('.header__title')
+const headerTitle = get('.header__title')
 
 // Answer sections
-const answerCard1 = document.querySelector('.answer__card-1')
-const answerCard2 = document.querySelector('.answer__card-2')
-const answerCard3 = document.querySelector('.answer__card-3')
+const answerCard1 = get('.answer__card-1')
+const answerCard2 = get('.answer__card-2')
+const answerCard3 = get('.answer__card-3')
 
 // Form
-const createForm = document.querySelector('form')
+const createForm = get('form')
 
 // EVENTS
 navButtonHome.addEventListener('click', () => {
@@ -166,6 +166,10 @@ formButtonSubmit.addEventListener('click', (event) => {
 //     }
 //   })
 // })
+
+function get(selector) {
+  return document.querySelector(selector)
+}
 
 function forCard(number) {
   if (number === 1) {
