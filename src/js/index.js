@@ -46,20 +46,6 @@ navButtonSaved.addEventListener('click', () => {
   mainBookmark.classList.remove('hidden')
   mainCreate.classList.add('hidden')
   mainProfile.classList.add('hidden')
-
-  if (showAnswerCard3.classList.contains('card__button--show-answer')) {
-    showAnswerCard3.addEventListener('click', () => {
-      answerCard3.classList.remove('hidden')
-      showAnswerCard3.classList.remove('card__button--show-answer')
-      showAnswerCard3.classList.add('card__button--hide-answer')
-    })
-  } else {
-    showAnswerCard3.addEventListener('click', () => {
-      answerCard3.classList.add('hidden')
-      showAnswerCard3.classList.add('card__button--show-answer')
-      showAnswerCard3.classList.remove('card__button--hide-answer')
-    })
-  }
 })
 navButtonAdd.addEventListener('click', () => {
   headerTitle.textContent = 'CREATE'
@@ -97,6 +83,18 @@ showAnswerCard2.addEventListener('click', () => {
     answerCard2.classList.add('hidden')
     showAnswerCard2.classList.add('card__button--show-answer')
     showAnswerCard2.classList.remove('card__button--hide-answer')
+  }
+})
+
+showAnswerCard3.addEventListener('click', () => {
+  if (showAnswerCard3.classList.contains('card__button--show-answer')) {
+    answerCard3.classList.remove('hidden')
+    showAnswerCard3.classList.remove('card__button--show-answer')
+    showAnswerCard3.classList.add('card__button--hide-answer')
+  } else {
+    answerCard3.classList.add('hidden')
+    showAnswerCard3.classList.add('card__button--show-answer')
+    showAnswerCard3.classList.remove('card__button--hide-answer')
   }
 })
 
