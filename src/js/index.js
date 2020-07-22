@@ -1,3 +1,13 @@
+// constants
+const HOME_ACTIVE = 'images/buttons/round_home_black_48dp.png'
+const HOME_INACTIVE = 'images/buttons/round_home_outline_48dp.png'
+const SAVED_ACTIVE = 'images/buttons/round_bookmarks_black_48dp.png'
+const SAVED_INACTIVE = 'images/buttons/round_bookmarks_outline_48dp.png'
+const ADD_ACTIVE = 'images/buttons/round_add_box_black_48dp.png'
+const ADD_INACTIVE = 'images/buttons/round_add_box_outline_48dp.png'
+const PROFILE_ACTIVE = 'images/buttons/round_account_box_black_48dp.png'
+const PROFILE_INACTIVE = 'images/buttons/round_account_box_outline_48dp.png'
+
 // main elements
 const mainIndex = document.querySelector('.main__index')
 const mainBookmark = document.querySelector('.main__bookmark')
@@ -131,3 +141,5 @@ bookmark3.addEventListener('click', () => {
 //     }
 //   })
 // })
+
+console.log(document.querySelector('img').attributes.src.nodeValue)
