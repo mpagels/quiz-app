@@ -13,12 +13,14 @@ const navButtonProfile = document.querySelector('.btn-profile')
 
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
 const showAnswerCard2 = document.querySelector('.btn__card--2 button')
+const showAnswerCard3 = document.querySelector('.btn__card--3 button')
 //titleElement
 const headerTitle = document.querySelector('.header__title')
 
 //Answer sections
 const answerCard1 = document.querySelector('.answer__card-1')
 const answerCard2 = document.querySelector('.answer__card-2')
+const answerCard3 = document.querySelector('.answer__card-3')
 
 // EVENTS
 
@@ -35,6 +37,20 @@ navButtonSaved.addEventListener('click', () => {
   mainBookmark.classList.remove('hidden')
   mainCreate.classList.add('hidden')
   mainProfile.classList.add('hidden')
+
+  if (showAnswerCard3.classList.contains('card__button--show-answer')) {
+    showAnswerCard3.addEventListener('click', () => {
+      answerCard3.classList.remove('hidden')
+      showAnswerCard3.classList.remove('card__button--show-answer')
+      showAnswerCard3.classList.add('card__button--hide-answer')
+    })
+  } else {
+    showAnswerCard3.addEventListener('click', () => {
+      answerCard3.classList.add('hidden')
+      showAnswerCard3.classList.add('card__button--show-answer')
+      showAnswerCard3.classList.remove('card__button--hide-answer')
+    })
+  }
 })
 navButtonAdd.addEventListener('click', () => {
   headerTitle.textContent = 'CREATE'
