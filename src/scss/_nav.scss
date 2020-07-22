@@ -17,31 +17,6 @@ nav {
   }
 }
 
-.btn-home--active::after {
-  content: url(images/buttons/round_home_black_48dp.png);
-}
-.btn-home--deactive::after {
-  content: url(images/buttons/round_home_outline_48dp.png);
-}
-.btn-bookmarks--active::after {
-  content: url(images/buttons/round_bookmarks_black_48dp.png);
-}
-.btn-bookmarks--deactive::after {
-  content: url(images/buttons/round_bookmarks_outline_48dp.png);
-}
-.btn-add--active::after {
-  content: url(images/buttons/round_add_box_black_48dp.png);
-}
-.btn-add--deactive::after {
-  content: url(images/buttons/round_add_box_outline_48dp.png);
-}
-.btn-profile--active::after {
-  content: url(images/buttons/round_account_box_black_48dp.png);
-}
-.btn-profile--deactive::after {
-  content: url(images/buttons/round_account_box_outline_48dp.png);
-}
-
 .nav__button-name > span {
   font-size: small;
   font-weight: 800;
