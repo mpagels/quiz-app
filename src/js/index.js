@@ -4,26 +4,28 @@ const mainBookmark = document.querySelector('.main__bookmark')
 const mainCreate = document.querySelector('.main__create')
 const mainProfile = document.querySelector('.main__profile')
 
-// buttons
-//nav
+// button__nav
 const navButtonHome = document.querySelector('.btn-home')
 const navButtonSaved = document.querySelector('.btn-bookmarks')
 const navButtonAdd = document.querySelector('.btn-add')
 const navButtonProfile = document.querySelector('.btn-profile')
-// cards
+// button__cards-show/answer
 const showAnswerCard1 = document.querySelector('.btn__card--1 button')
 const showAnswerCard2 = document.querySelector('.btn__card--2 button')
 const showAnswerCard3 = document.querySelector('.btn__card--3 button')
-const bookmarkButtons = document.querySelectorAll(
-  'button[class*=card__bookmark--]'
-)
+
+// button__cards_bookmark
+const bookmark1 = document.querySelector('.card__bookmark1')
+const bookmark2 = document.querySelector('.card__bookmark2')
+const bookmark3 = document.querySelector('.card__bookmark3')
+
 // form
 const formButtonSubmit = document.querySelector('.card__button--submit')
 
-//titleElement
+// titleElement
 const headerTitle = document.querySelector('.header__title')
 
-//Answer sections
+// Answer sections
 const answerCard1 = document.querySelector('.answer__card-1')
 const answerCard2 = document.querySelector('.answer__card-2')
 const answerCard3 = document.querySelector('.answer__card-3')
@@ -105,14 +107,27 @@ formButtonSubmit.addEventListener('click', (event) => {
   document.querySelector('input[name=tags]').value = ''
 })
 
-bookmarkButtons.forEach((bookmark) => {
-  bookmark.addEventListener('click', () => {
-    if (bookmark.classList.contains('card__bookmark--active')) {
-      bookmark.classList.remove('card__bookmark--active')
-      bookmark.classList.add('card__bookmark--inactive')
-    } else {
-      bookmark.classList.add('card__bookmark--active')
-      bookmark.classList.remove('card__bookmark--inactive')
-    }
-  })
+bookmark1.addEventListener('click', () => {
+  bookmark1.classList.toggle('card__bookmark--active')
+  bookmark1.classList.toggle('card__bookmark--inactive')
 })
+bookmark2.addEventListener('click', () => {
+  bookmark2.classList.toggle('card__bookmark--active')
+  bookmark2.classList.toggle('card__bookmark--inactive')
+})
+bookmark3.addEventListener('click', () => {
+  bookmark3.classList.toggle('card__bookmark--active')
+  bookmark3.classList.toggle('card__bookmark--inactive')
+})
+
+// bookmarkButtons.forEach((bookmark) => {
+//   bookmark.addEventListener('click', () => {
+//     if (bookmark.classList.contains('card__bookmark--active')) {
+//       bookmark.classList.remove('card__bookmark--active')
+//       bookmark.classList.add('card__bookmark--inactive')
+//     } else {
+//       bookmark.classList.add('card__bookmark--active')
+//       bookmark.classList.remove('card__bookmark--inactive')
+//     }
+//   })
+// })
