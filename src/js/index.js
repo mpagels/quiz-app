@@ -84,8 +84,6 @@ function navigateTo(site) {
       navButtonSaved.src = SAVED_INACTIVE
       navButtonAdd.src = ADD_INACTIVE
       navButtonProfile.src = PROFILE_INACTIVE
-
-      toggleNav()
     }
   } else if (site === 'BOOKMARKS') {
     return () => {
@@ -100,8 +98,6 @@ function navigateTo(site) {
       navButtonSaved.src = SAVED_ACTIVE
       navButtonAdd.src = ADD_INACTIVE
       navButtonProfile.src = PROFILE_INACTIVE
-
-      toggleNav()
     }
   } else if (site === 'CREATE') {
     return () => {
@@ -116,8 +112,6 @@ function navigateTo(site) {
       navButtonSaved.src = SAVED_INACTIVE
       navButtonAdd.src = ADD_ACTIVE
       navButtonProfile.src = PROFILE_INACTIVE
-
-      toggleNav()
     }
   } else if (site === 'PROFILE') {
     return () => {
@@ -132,8 +126,6 @@ function navigateTo(site) {
       navButtonSaved.src = SAVED_INACTIVE
       navButtonAdd.src = ADD_INACTIVE
       navButtonProfile.src = PROFILE_ACTIVE
-
-      toggleNav()
     }
   }
 }
@@ -183,15 +175,4 @@ function toggleBookmark(event) {
     event.target.classList.toggle('card__bookmark--active')
     event.target.classList.toggle('card__bookmark--inactive')
   }
-}
-
-function toggleNav() {
-  navButtonHome.classList.toggle('btn-home--active')
-  navButtonHome.classList.toggle('btn-home--deactive')
-  navButtonSaved.classList.toogle('btn-bookmarks--deactive')
-  navButtonSaved.classList.toogle('btn-bookmarks--active')
-  navButtonAdd.classList.toogle('btn-add--deactive')
-  navButtonAdd.classList.toogle('btn-add--active')
-  navButtonProfile.classList.toogle('btn-profile--deactive')
-  navButtonProfile.classList.toggle('btn-profile--active')
 }
