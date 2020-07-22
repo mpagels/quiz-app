@@ -42,8 +42,8 @@ navButtonHome.addEventListener('click', () => {
   mainCreate.classList.add('hidden')
   mainProfile.classList.add('hidden')
 
-  navButtonHome.classList.add('btn-home--active')
-  navButtonHome.classList.remove('btn-home--deactive')
+  navButtonHome.classList.toggle('btn-home--active')
+  navButtonHome.classList.toggle('btn-home--deactive')
 
   navButtonSaved.classList.remove('btn-bookmarks--active')
   navButtonAdd.classList.remove('btn-add--active')
@@ -60,8 +60,8 @@ navButtonSaved.addEventListener('click', () => {
   mainCreate.classList.add('hidden')
   mainProfile.classList.add('hidden')
 
-  navButtonSaved.classList.add('btn-bookmarks--active')
-  navButtonSaved.classList.remove('btn-bookmarks--deactive')
+  navButtonSaved.classList.toggle('btn-bookmarks--active')
+  navButtonSaved.classList.toggle('btn-bookmarks--deactive')
 
   navButtonAdd.classList.remove('btn-add--active')
   navButtonAdd.classList.add('btn-add--deactive')
