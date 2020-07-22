@@ -15,10 +15,10 @@ const mainCreate = get('.main__create')
 const mainProfile = get('.main__profile')
 
 // button__nav
-const navButtonHome = get('[class*="btn-home"]')
-const navButtonSaved = get('[class*="btn-bookmarks"]')
-const navButtonAdd = get('[class*="btn-add"]')
-const navButtonProfile = get('[class*="btn-profile"]')
+const navButtonHome = get('[class*="btn-home--"]')
+const navButtonSaved = get('[class*="btn-bookmarks--"]')
+const navButtonAdd = get('[class*="btn-add--"]')
+const navButtonProfile = get('[class*="btn-profile--"]')
 
 // button__cards_bookmark
 const bookmark1 = get('.card__bookmark1')
@@ -60,11 +60,12 @@ bookmark3.addEventListener('click', toggleBookmark(event))
 
 formButtonSubmit.addEventListener('click', (event) => {
   event.preventDefault()
-  document.querySelector('textarea[name=question]').value = ''
-  document.querySelector('textarea[name=answer]').value = ''
-  document.querySelector('input[name=tags]').value = ''
+  get('textarea[name=question]').value = ''
+  get('textarea[name=answer]').value = ''
+  get('input[name=tags]').value = ''
 })
 
+// LOGIC
 function get(selector) {
   return document.querySelector(selector)
 }
@@ -84,15 +85,7 @@ function navigateTo(site) {
       navButtonAdd.src = ADD_INACTIVE
       navButtonProfile.src = PROFILE_INACTIVE
 
-      navButtonHome.classList.toggle('btn-home--active')
-      navButtonHome.classList.toggle('btn-home--deactive')
-
-      navButtonSaved.classList.remove('btn-bookmarks--active')
-      navButtonAdd.classList.remove('btn-add--active')
-      navButtonProfile.classList.remove('btn-profile--active')
-      navButtonSaved.classList.add('btn-bookmarks--deactive')
-      navButtonAdd.classList.add('btn-add--deactive')
-      navButtonProfile.classList.add('btn-profile--deactive')
+      toggleNav()
     }
   } else if (site === 'BOOKMARKS') {
     return () => {
@@ -108,15 +101,7 @@ function navigateTo(site) {
       navButtonAdd.src = ADD_INACTIVE
       navButtonProfile.src = PROFILE_INACTIVE
 
-      navButtonSaved.classList.toggle('btn-bookmarks--active')
-      navButtonSaved.classList.toggle('btn-bookmarks--deactive')
-
-      navButtonAdd.classList.remove('btn-add--active')
-      navButtonAdd.classList.add('btn-add--deactive')
-      navButtonHome.classList.add('btn-home--deactive')
-      navButtonHome.classList.remove('btn-home--active')
-      navButtonProfile.classList.add('btn-profile--deactive')
-      navButtonProfile.classList.remove('btn-profile--active')
+      toggleNav()
     }
   } else if (site === 'CREATE') {
     return () => {
@@ -132,15 +117,7 @@ function navigateTo(site) {
       navButtonAdd.src = ADD_ACTIVE
       navButtonProfile.src = PROFILE_INACTIVE
 
-      navButtonAdd.classList.add('btn-add--active')
-      navButtonAdd.classList.remove('btn-add--deactive')
-
-      navButtonSaved.classList.add('btn-bookmarks--deactive')
-      navButtonSaved.classList.remove('btn-bookmarks--active')
-      navButtonHome.classList.add('btn-home--deactive')
-      navButtonHome.classList.remove('btn-home--active')
-      navButtonProfile.classList.add('btn-profile--deactive')
-      navButtonProfile.classList.remove('btn-profile--active')
+      toggleNav()
     }
   } else if (site === 'PROFILE') {
     return () => {
@@ -156,15 +133,7 @@ function navigateTo(site) {
       navButtonAdd.src = ADD_INACTIVE
       navButtonProfile.src = PROFILE_ACTIVE
 
-      navButtonProfile.classList.add('btn-profile--active')
-      navButtonProfile.classList.remove('btn-profile--deactive')
-
-      navButtonAdd.classList.remove('btn-add--active')
-      navButtonAdd.classList.add('btn-add--deactive')
-      navButtonSaved.classList.add('btn-bookmarks--deactive')
-      navButtonSaved.classList.remove('btn-bookmarks--active')
-      navButtonHome.classList.add('btn-home--deactive')
-      navButtonHome.classList.remove('btn-home--active')
+      toggleNav()
     }
   }
 }
@@ -214,4 +183,15 @@ function toggleBookmark(event) {
     event.target.classList.toggle('card__bookmark--active')
     event.target.classList.toggle('card__bookmark--inactive')
   }
+}
+
+function toggleNav() {
+  navButtonHome.classList.toggle('btn-home--active')
+  navButtonHome.classList.toggle('btn-home--deactive')
+  navButtonSaved.classList.toogle('btn-bookmarks--deactive')
+  navButtonSaved.classList.toogle('btn-bookmarks--active')
+  navButtonAdd.classList.toogle('btn-add--deactive')
+  navButtonAdd.classList.toogle('btn-add--active')
+  navButtonProfile.classList.toogle('btn-profile--deactive')
+  navButtonProfile.classList.toggle('btn-profile--active')
 }
