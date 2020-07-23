@@ -134,21 +134,21 @@ function getAll(selector) {
   return document.querySelectorAll(selector);
 }
 },{}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
-module.exports = "/round_home_black_48dp.94b2d040.png";
+module.exports = "round_home_black_48dp.94b2d040.png";
 },{}],"images/buttons/round_home_outline_48dp.png":[function(require,module,exports) {
-module.exports = "/round_home_outline_48dp.4df0597d.png";
+module.exports = "round_home_outline_48dp.4df0597d.png";
 },{}],"images/buttons/round_bookmarks_black_48dp.png":[function(require,module,exports) {
-module.exports = "/round_bookmarks_black_48dp.904188d1.png";
+module.exports = "round_bookmarks_black_48dp.904188d1.png";
 },{}],"images/buttons/round_bookmarks_outline_48dp.png":[function(require,module,exports) {
-module.exports = "/round_bookmarks_outline_48dp.7c000e48.png";
+module.exports = "round_bookmarks_outline_48dp.7c000e48.png";
 },{}],"images/buttons/round_add_box_black_48dp.png":[function(require,module,exports) {
-module.exports = "/round_add_box_black_48dp.521a1e91.png";
+module.exports = "round_add_box_black_48dp.521a1e91.png";
 },{}],"images/buttons/round_add_box_outline_48dp.png":[function(require,module,exports) {
-module.exports = "/round_add_box_outline_48dp.a8018d88.png";
+module.exports = "round_add_box_outline_48dp.a8018d88.png";
 },{}],"images/buttons/round_account_box_black_48dp.png":[function(require,module,exports) {
-module.exports = "/round_account_box_black_48dp.73e5eef3.png";
+module.exports = "round_account_box_black_48dp.73e5eef3.png";
 },{}],"images/buttons/round_account_box_outline_48dp.png":[function(require,module,exports) {
-module.exports = "/round_account_box_outline_48dp.92284b6e.png";
+module.exports = "round_account_box_outline_48dp.92284b6e.png";
 },{}],"src/js/nav.js":[function(require,module,exports) {
 "use strict";
 
@@ -342,7 +342,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53461" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54947" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -519,4 +519,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/index.js"], null)
-//# sourceMappingURL=/js.d818e0ef.js.map
+//# sourceMappingURL=js.d818e0ef.js.map
