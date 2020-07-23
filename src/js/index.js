@@ -1,12 +1,9 @@
 import { get } from './utility'
 import navInit from './nav'
+import bookmarkLogic from './bookmark'
 
 navInit()
-
-// button__cards_bookmark
-const bookmark1 = get('.card__bookmark1')
-const bookmark2 = get('.card__bookmark2')
-const bookmark3 = get('.card__bookmark3')
+bookmarkLogic()
 
 // button__cards-show/answer
 const showAnswerCard1 = get('.btn__card--1 button')
@@ -27,10 +24,6 @@ const createForm = get('form')
 showAnswerCard1.addEventListener('click', forCard(1))
 showAnswerCard2.addEventListener('click', forCard(2))
 showAnswerCard3.addEventListener('click', forCard(3))
-
-bookmark1.addEventListener('click', toggleBookmark(event))
-bookmark2.addEventListener('click', toggleBookmark(event))
-bookmark3.addEventListener('click', toggleBookmark(event))
 
 formButtonSubmit.addEventListener('click', (event) => {
   event.preventDefault()
@@ -76,12 +69,5 @@ function forCard(number) {
         showAnswerCard3.classList.remove('card__button--hide-answer')
       }
     }
-  }
-}
-
-function toggleBookmark(event) {
-  return (event) => {
-    event.target.classList.toggle('card__bookmark--active')
-    event.target.classList.toggle('card__bookmark--inactive')
   }
 }
