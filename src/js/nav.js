@@ -1,3 +1,14 @@
+import { get } from './utility'
+
+import HOME_ACTIVE from './../../images/buttons/round_home_black_48dp.png'
+import HOME_INACTIVE from './../../images/buttons/round_home_outline_48dp.png'
+import SAVED_ACTIVE from './../../images/buttons/round_bookmarks_black_48dp.png'
+import SAVED_INACTIVE from './../../images/buttons/round_bookmarks_outline_48dp.png'
+import ADD_ACTIVE from './../../images/buttons/round_add_box_black_48dp.png'
+import ADD_INACTIVE from './../../images/buttons/round_add_box_outline_48dp.png'
+import PROFILE_ACTIVE from './../../images/buttons/round_account_box_black_48dp.png'
+import PROFILE_INACTIVE from './../../images/buttons/round_account_box_outline_48dp.png'
+
 export default function () {
   // main elements
   const mainIndex = get('.main__index')
