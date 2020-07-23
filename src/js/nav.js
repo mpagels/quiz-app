@@ -26,69 +26,48 @@ export default function () {
   const headerTitle = get('.header__title')
 
   // EVENTS
-  navButtonHome.addEventListener('click', navigateTo('QUIZ - APP'))
-  navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS'))
-  navButtonAdd.addEventListener('click', navigateTo('CREATE'))
-  navButtonProfile.addEventListener('click', navigateTo('PROFILE'))
+  navButtonHome.addEventListener(
+    'click',
+    navigateTo('QUIZ - APP', mainIndex, navButtonHome)
+  )
+  navButtonSaved.addEventListener(
+    'click',
+    navigateTo('BOOKMARKS', mainBookmark, navButtonSaved)
+  )
+  navButtonAdd.addEventListener(
+    'click',
+    navigateTo('CREATE', mainCreate, navButtonAdd)
+  )
+  navButtonProfile.addEventListener(
+    'click',
+    navigateTo('PROFILE', mainProfile, navButtonProfile)
+  )
 
   // LOGIC
 
-  function navigateTo(site) {
-    if (site === 'QUIZ - APP') {
-      return () => {
-        headerTitle.textContent = site
+  function navigateTo(site, mainSection, navButton) {
+    return () => {
+      headerTitle.textContent = site
 
-        mainIndex.classList.remove('hidden')
-        mainBookmark.classList.add('hidden')
-        mainCreate.classList.add('hidden')
-        mainProfile.classList.add('hidden')
+      mainIndex.classList.add('hidden')
+      mainBookmark.classList.add('hidden')
+      mainCreate.classList.add('hidden')
+      mainProfile.classList.add('hidden')
+      mainSection.classList.remove('hidden')
 
-        navButtonHome.src = HOME_ACTIVE
-        navButtonSaved.src = SAVED_INACTIVE
-        navButtonAdd.src = ADD_INACTIVE
-        navButtonProfile.src = PROFILE_INACTIVE
-      }
-    } else if (site === 'BOOKMARKS') {
-      return () => {
-        headerTitle.textContent = site
+      navButtonHome.src = HOME_INACTIVE
+      navButtonSaved.src = SAVED_INACTIVE
+      navButtonAdd.src = ADD_INACTIVE
+      navButtonProfile.src = PROFILE_INACTIVE
 
-        mainIndex.classList.add('hidden')
-        mainBookmark.classList.remove('hidden')
-        mainCreate.classList.add('hidden')
-        mainProfile.classList.add('hidden')
-
-        navButtonHome.src = HOME_INACTIVE
-        navButtonSaved.src = SAVED_ACTIVE
-        navButtonAdd.src = ADD_INACTIVE
-        navButtonProfile.src = PROFILE_INACTIVE
-      }
-    } else if (site === 'CREATE') {
-      return () => {
-        headerTitle.textContent = site
-
-        mainIndex.classList.add('hidden')
-        mainBookmark.classList.add('hidden')
-        mainCreate.classList.remove('hidden')
-        mainProfile.classList.add('hidden')
-
-        navButtonHome.src = HOME_INACTIVE
-        navButtonSaved.src = SAVED_INACTIVE
-        navButtonAdd.src = ADD_ACTIVE
-        navButtonProfile.src = PROFILE_INACTIVE
-      }
-    } else if (site === 'PROFILE') {
-      return () => {
-        headerTitle.textContent = site
-
-        mainIndex.classList.add('hidden')
-        mainBookmark.classList.add('hidden')
-        mainCreate.classList.add('hidden')
-        mainProfile.classList.remove('hidden')
-
-        navButtonHome.src = HOME_INACTIVE
-        navButtonSaved.src = SAVED_INACTIVE
-        navButtonAdd.src = ADD_INACTIVE
-        navButtonProfile.src = PROFILE_ACTIVE
+      if (navButton === navButtonHome) {
+        navButton.src = HOME_ACTIVE
+      } else if (navButton === navButtonSaved) {
+        navButton.src = SAVED_ACTIVE
+      } else if (navButton === navButtonAdd) {
+        navButton.src = ADD_ACTIVE
+      } else if (navButton === navButtonProfile) {
+        navButton.src = PROFILE_ACTIVE
       }
     }
   }
