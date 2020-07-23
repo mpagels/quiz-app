@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.8986bff4.css">
+    <title>Quiz - App | Create</title>
+  </head>
+  <body>
+    <header class="header">
+      <span class="header__title">CREATE</span>
+    </header>
+
+    <main>
+      <section class="card">
+        <!-- class card can be found in card.scss -->
+        <form class="create__form">
+          <section class="create__title">New Card</section>
+          <section class="create__question">
+            <label for="question">Add Question:</label><br>
+            <textarea name="question" rows="5" placeholder="E.g.: Which hotkeys are for up and down in vim?"></textarea>
+          </section>
+          <section class="create__answer">
+            <label for="answer">Add Answer:</label><br>
+            <textarea name="answer" rows="5" placeholder="Answer"></textarea>
+          </section>
+          <section class="create__tags">
+            <label for="tags">Add Tags:</label><br>
+            <input type="text" id="tags" name="tags" placeholder="Tags, comma seperated">
+          </section>
+          <section class="card__button">
+            <button class="card__button--submit"></button>
+          </section>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <nav>
+        <ul class="nav__liste">
+          <li class="nav__liste--hover">
+            <div></div>
+            <a href="/index.html">
+              <img src="/round_home_outline_48dp.4df0597d.png"><span>Home</span></a>
+          </li>
+          <li class="nav__liste--hover">
+            <div></div>
+            <a href="/bookmarks.html"><img src="/round_bookmarks_outline_48dp.7c000e48.png"><span>Saved</span></a>
+          </li>
+          <li>
+            <div class="nav__liste--active"></div>
+            <a href="/create.html"><img src="/round_add_box_black_48dp.521a1e91.png"><span>Add</span></a>
+          </li>
+          <li class="nav__liste--hover">
+            <div></div>
+            <a href="/profile.html"><img src="/round_account_box_outline_48dp.92284b6e.png"><span>Profile</span></a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

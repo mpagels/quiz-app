@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.cbb799b3.css">
+    <title>Quiz - App | Home</title>
+    <script defer="" src="/js.d818e0ef.js"></script>
+  <script src="/styles.cbb799b3.js"></script></head>
+  <body>
+    <header class="header">
+      <span class="header__title">QUIZ - APP</span>
+    </header>
+
+    <main class="main__index">
+      <section class="card">
+        <button class="card__bookmark--active card__bookmark1"></button>
+        <section class="card__content">
+          <section class="card__question">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
+            vitae!
+            <span>
+              <ul>
+                <li class="tags">HTML</li>
+                <li class="tags">CSS</li>
+                <li class="tags">Basics</li>
+                <li class="tags">SASS</li>
+              </ul>
+            </span>
+          </section>
+          <section class="answer answer__card-1 hidden">
+            Lorem ipsum dolor sit, amet consectetur adipisicing.
+          </section>
+          <section class="card__button btn__card--1">
+            <button class="card__button--show-answer"></button>
+          </section>
+        </section>
+      </section>
+
+      <section class="card">
+        <button class="card__bookmark--inactive card__bookmark2"></button>
+        <section class="card__content">
+          <section class="card__question">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
+            vitae!!!
+            <span>
+              <ul>
+                <li class="tags">HTML</li>
+                <li class="tags">CSS</li>
+                <li class="tags">Basics</li>
+              </ul>
+            </span>
+          </section>
+          <section class="answer answer__card-2 hidden">
+            Lorem ipsum dolor sit, amet consectetur adipisicing.
+          </section>
+          <section class="card__button btn__card--2">
+            <button class="card__button--show-answer"></button>
+          </section>
+        </section>
+      </section>
+    </main>
+    <main class="main__bookmark hidden">
+      <section class="card">
+        <button class="card__bookmark--active card__bookmark3"></button>
+        <section class="card__content">
+          <section class="card__question">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
+            vitae!
+            <span>
+              <ul>
+                <li class="tags">HTML</li>
+                <li class="tags">CSS</li>
+                <li class="tags">Basics</li>
+                <li class="tags">SASS</li>
+              </ul>
+            </span>
+          </section>
+          <section class="answer answer__card-3 hidden">
+            Lorem ipsum dolor sit, amet consectetur adipisicing.
+          </section>
+          <section class="card__button btn__card--3">
+            <button class="card__button--show-answer"></button>
+          </section>
+        </section>
+      </section>
+    </main>
+    <main class="main__create hidden">
+      <section class="card">
+        <!-- class card can be found in card.scss -->
+        <form class="create__form">
+          <section class="create__title">New Card</section>
+          <section class="create__question">
+            <label for="question">Add Question:</label><br>
+            <textarea name="question" rows="5" placeholder="E.g.: Which hotkeys are for up and down in vim?"></textarea>
+          </section>
+          <section class="create__answer">
+            <label for="answer">Add Answer:</label><br>
+            <textarea name="answer" rows="5" placeholder="Answer"></textarea>
+          </section>
+          <section class="create__tags">
+            <label for="tags">Add Tags:</label><br>
+            <input type="text" id="tags" name="tags" placeholder="Tags, comma seperated">
+          </section>
+          <section class="card__button">
+            <button class="card__button--submit"></button>
+          </section>
+        </form>
+      </section>
+    </main>
+    <main class="main__profile hidden">
+      <section class="profil">
+        <section class="profil__header">
+          <img class="profil__foto" src="/martin-profil.8473a2a2.png">
+          <span class="profil__name">Martin</span>
+        </section>
+        <section class="profil__about">
+          Inselbegabt. Gutes Filmwissen. Erfindet auch mal glaubwürdige
+          Antworten.
+        </section>
+        <section class="profil__skills">
+          <h4>Skills:</h4>
+          <ul class="skill__liste">
+            <li class="tags">Schnelligkeit</li>
+            <li class="tags">Spezialwissen</li>
+            <li class="tags">Glück</li>
+            <li class="tags">Kampfgeist</li>
+          </ul>
+        </section>
+        <section class="profil__logout">
+          <button class="logout__button">
+            <span>Logout</span>
+          </button>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <nav class="nav__liste">
+        <div class="nav__button-name">
+          <img src="/round_home_black_48dp.94b2d040.png" class="btn-home--active">
+          <span>Home</span>
+        </div>
+        <div class="nav__button-name">
+          <img src="/round_bookmarks_outline_48dp.7c000e48.png" class="btn-bookmarks--deactive">
+          <span>Saved</span>
+        </div>
+        <div class="nav__button-name">
+          <img src="/round_add_box_outline_48dp.a8018d88.png" class="btn-add--deactive">
+          <span>Add</span>
+        </div>
+        <div class="nav__button-name">
+          <img src="/round_account_box_outline_48dp.92284b6e.png" class="btn-profile--deactive">
+          <span>Profile</span>
+        </div>
+      </nav>
+    </footer>
+  </body>
+</html>
