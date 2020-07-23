@@ -1,30 +1,20 @@
-import { get } from './utility'
+import { get, getAll } from './utility'
 
 export default function () {
-  // button__cards-show/answer
-  const showAnswerCard1 = get('.btn__card--1 button')
-  const showAnswerCard2 = get('.btn__card--2 button')
-  const showAnswerCard3 = get('.btn__card--3 button')
+  const cards = getAll('.card')
 
-  // Answer sections
-  const answerCard1 = get('.answer__card-1')
-  const answerCard2 = get('.answer__card-2')
-  const answerCard3 = get('.answer__card-3')
+  cards.forEach(toggleAnswer)
 
-  showAnswerCard1.addEventListener(
-    'click',
-    forCard(showAnswerCard1, answerCard1)
-  )
-  showAnswerCard2.addEventListener(
-    'click',
-    forCard(showAnswerCard2, answerCard2)
-  )
-  showAnswerCard3.addEventListener(
-    'click',
-    forCard(showAnswerCard3, answerCard3)
-  )
+  function toggleAnswer(card) {
+    const buttonAnswer = card.querySelector('[class*="card__button--"]')
+    const answer = card.querySelector('.answer')
+    buttonAnswer.addEventListener(
+      'click',
+      showAnswerForCard(buttonAnswer, answer)
+    )
+  }
 
-  function forCard(button, answerCard) {
+  function showAnswerForCard(button, answerCard) {
     return () => {
       if (button.classList.contains('card__button--show-answer')) {
         answerCard.classList.remove('hidden')

@@ -1,10 +1,6 @@
 import { get } from './utility'
 
 export default function () {
-  // form
-  const formButtonSubmit = get('.card__button--submit')
-
-  // Form
   const form = get('form')
 
   form.addEventListener('submit', (event) => {

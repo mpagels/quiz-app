@@ -1,14 +1,10 @@
-import { get } from './utility'
+import { get, getAll } from './utility'
 
 export default function () {
-  // button__cards_bookmark
-  const bookmark1 = get('.card__bookmark1')
-  const bookmark2 = get('.card__bookmark2')
-  const bookmark3 = get('.card__bookmark3')
-
-  bookmark1.addEventListener('click', toggleBookmark(event))
-  bookmark2.addEventListener('click', toggleBookmark(event))
-  bookmark3.addEventListener('click', toggleBookmark(event))
+  const bookmarks = getAll('[class*="card__bookmark--"]')
+  bookmarks.forEach((bookmark, event) => {
+    bookmark.addEventListener('click', toggleBookmark(event))
+  })
 
   function toggleBookmark(event) {
     return (event) => {
