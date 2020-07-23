@@ -117,7 +117,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
+})({"src/js/utility.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.get = get;
+
+function get(selector) {
+  return document.querySelector(selector);
+}
+},{}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_black_48dp.94b2d040.png";
 },{}],"images/buttons/round_home_outline_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_outline_48dp.4df0597d.png";
@@ -133,19 +144,15 @@ module.exports = "/round_add_box_outline_48dp.a8018d88.png";
 module.exports = "/round_account_box_black_48dp.73e5eef3.png";
 },{}],"images/buttons/round_account_box_outline_48dp.png":[function(require,module,exports) {
 module.exports = "/round_account_box_outline_48dp.92284b6e.png";
-},{}],"src/js/utility.js":[function(require,module,exports) {
+},{}],"src/js/nav.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.get = get;
+exports.default = _default;
 
-function get(selector) {
-  return document.querySelector(selector);
-}
-},{}],"src/js/index.js":[function(require,module,exports) {
-"use strict";
+var _utility = require("./utility");
 
 var _round_home_black_48dp = _interopRequireDefault(require("./../../images/buttons/round_home_black_48dp.png"));
 
@@ -163,155 +170,208 @@ var _round_account_box_black_48dp = _interopRequireDefault(require("./../../imag
 
 var _round_account_box_outline_48dp = _interopRequireDefault(require("./../../images/buttons/round_account_box_outline_48dp.png"));
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _default() {
+  // main elements
+  var mainIndex = (0, _utility.get)('.main__index');
+  var mainBookmark = (0, _utility.get)('.main__bookmark');
+  var mainCreate = (0, _utility.get)('.main__create');
+  var mainProfile = (0, _utility.get)('.main__profile'); // button__nav
+
+  var navButtonHome = (0, _utility.get)('[class*="btn-home--"]');
+  var navButtonSaved = (0, _utility.get)('[class*="btn-bookmarks--"]');
+  var navButtonAdd = (0, _utility.get)('[class*="btn-add--"]');
+  var navButtonProfile = (0, _utility.get)('[class*="btn-profile--"]'); // site headline
+
+  var headerTitle = (0, _utility.get)('.header__title'); // EVENTS
+
+  navButtonHome.addEventListener('click', navigateTo('QUIZ - APP'));
+  navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS'));
+  navButtonAdd.addEventListener('click', navigateTo('CREATE'));
+  navButtonProfile.addEventListener('click', navigateTo('PROFILE')); // LOGIC
+
+  function navigateTo(site) {
+    if (site === 'QUIZ - APP') {
+      return function () {
+        headerTitle.textContent = site;
+        mainIndex.classList.remove('hidden');
+        mainBookmark.classList.add('hidden');
+        mainCreate.classList.add('hidden');
+        mainProfile.classList.add('hidden');
+        navButtonHome.src = _round_home_black_48dp.default;
+        navButtonSaved.src = _round_bookmarks_outline_48dp.default;
+        navButtonAdd.src = _round_add_box_outline_48dp.default;
+        navButtonProfile.src = _round_account_box_outline_48dp.default;
+      };
+    } else if (site === 'BOOKMARKS') {
+      return function () {
+        headerTitle.textContent = site;
+        mainIndex.classList.add('hidden');
+        mainBookmark.classList.remove('hidden');
+        mainCreate.classList.add('hidden');
+        mainProfile.classList.add('hidden');
+        navButtonHome.src = _round_home_outline_48dp.default;
+        navButtonSaved.src = _round_bookmarks_black_48dp.default;
+        navButtonAdd.src = _round_add_box_outline_48dp.default;
+        navButtonProfile.src = _round_account_box_outline_48dp.default;
+      };
+    } else if (site === 'CREATE') {
+      return function () {
+        headerTitle.textContent = site;
+        mainIndex.classList.add('hidden');
+        mainBookmark.classList.add('hidden');
+        mainCreate.classList.remove('hidden');
+        mainProfile.classList.add('hidden');
+        navButtonHome.src = _round_home_outline_48dp.default;
+        navButtonSaved.src = _round_bookmarks_outline_48dp.default;
+        navButtonAdd.src = _round_add_box_black_48dp.default;
+        navButtonProfile.src = _round_account_box_outline_48dp.default;
+      };
+    } else if (site === 'PROFILE') {
+      return function () {
+        headerTitle.textContent = site;
+        mainIndex.classList.add('hidden');
+        mainBookmark.classList.add('hidden');
+        mainCreate.classList.add('hidden');
+        mainProfile.classList.remove('hidden');
+        navButtonHome.src = _round_home_outline_48dp.default;
+        navButtonSaved.src = _round_bookmarks_outline_48dp.default;
+        navButtonAdd.src = _round_add_box_outline_48dp.default;
+        navButtonProfile.src = _round_account_box_black_48dp.default;
+      };
+    }
+  }
+}
+},{"./utility":"src/js/utility.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/bookmark.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
 var _utility = require("./utility");
+
+function _default() {
+  // button__cards_bookmark
+  var bookmark1 = (0, _utility.get)('.card__bookmark1');
+  var bookmark2 = (0, _utility.get)('.card__bookmark2');
+  var bookmark3 = (0, _utility.get)('.card__bookmark3');
+  bookmark1.addEventListener('click', toggleBookmark(event));
+  bookmark2.addEventListener('click', toggleBookmark(event));
+  bookmark3.addEventListener('click', toggleBookmark(event));
+
+  function toggleBookmark(event) {
+    return function (event) {
+      event.target.classList.toggle('card__bookmark--active');
+      event.target.classList.toggle('card__bookmark--inactive');
+    };
+  }
+}
+},{"./utility":"src/js/utility.js"}],"src/js/card.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _utility = require("./utility");
+
+function _default() {
+  // button__cards-show/answer
+  var showAnswerCard1 = (0, _utility.get)('.btn__card--1 button');
+  var showAnswerCard2 = (0, _utility.get)('.btn__card--2 button');
+  var showAnswerCard3 = (0, _utility.get)('.btn__card--3 button'); // Answer sections
+
+  var answerCard1 = (0, _utility.get)('.answer__card-1');
+  var answerCard2 = (0, _utility.get)('.answer__card-2');
+  var answerCard3 = (0, _utility.get)('.answer__card-3');
+  showAnswerCard1.addEventListener('click', forCard(1));
+  showAnswerCard2.addEventListener('click', forCard(2));
+  showAnswerCard3.addEventListener('click', forCard(3));
+
+  function forCard(number) {
+    if (number === 1) {
+      return function () {
+        if (showAnswerCard1.classList.contains('card__button--show-answer')) {
+          answerCard1.classList.remove('hidden');
+          showAnswerCard1.classList.remove('card__button--show-answer');
+          showAnswerCard1.classList.add('card__button--hide-answer');
+        } else {
+          answerCard1.classList.add('hidden');
+          showAnswerCard1.classList.add('card__button--show-answer');
+          showAnswerCard1.classList.remove('card__button--hide-answer');
+        }
+      };
+    } else if (number === 2) {
+      return function () {
+        if (showAnswerCard2.classList.contains('card__button--show-answer')) {
+          answerCard2.classList.remove('hidden');
+          showAnswerCard2.classList.remove('card__button--show-answer');
+          showAnswerCard2.classList.add('card__button--hide-answer');
+        } else {
+          answerCard2.classList.add('hidden');
+          showAnswerCard2.classList.add('card__button--show-answer');
+          showAnswerCard2.classList.remove('card__button--hide-answer');
+        }
+      };
+    } else if (number === 3) {
+      return function () {
+        if (showAnswerCard3.classList.contains('card__button--show-answer')) {
+          answerCard3.classList.remove('hidden');
+          showAnswerCard3.classList.remove('card__button--show-answer');
+          showAnswerCard3.classList.add('card__button--hide-answer');
+        } else {
+          answerCard3.classList.add('hidden');
+          showAnswerCard3.classList.add('card__button--show-answer');
+          showAnswerCard3.classList.remove('card__button--hide-answer');
+        }
+      };
+    }
+  }
+}
+},{"./utility":"src/js/utility.js"}],"src/js/form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _utility = require("./utility");
+
+function _default() {
+  // form
+  var formButtonSubmit = (0, _utility.get)('.card__button--submit'); // Form
+
+  var form = (0, _utility.get)('form');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    (0, _utility.get)('textarea[name=question]').value = '';
+    (0, _utility.get)('textarea[name=answer]').value = '';
+    (0, _utility.get)('input[name=tags]').value = '';
+  });
+}
+},{"./utility":"src/js/utility.js"}],"src/js/index.js":[function(require,module,exports) {
+"use strict";
+
+var _nav = _interopRequireDefault(require("./nav"));
+
+var _bookmark = _interopRequireDefault(require("./bookmark"));
+
+var _card = _interopRequireDefault(require("./card"));
+
+var _form = _interopRequireDefault(require("./form"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// main elements
-var mainIndex = (0, _utility.get)('.main__index');
-var mainBookmark = (0, _utility.get)('.main__bookmark');
-var mainCreate = (0, _utility.get)('.main__create');
-var mainProfile = (0, _utility.get)('.main__profile'); // button__nav
-
-var navButtonHome = (0, _utility.get)('[class*="btn-home--"]');
-var navButtonSaved = (0, _utility.get)('[class*="btn-bookmarks--"]');
-var navButtonAdd = (0, _utility.get)('[class*="btn-add--"]');
-var navButtonProfile = (0, _utility.get)('[class*="btn-profile--"]'); // button__cards_bookmark
-
-var bookmark1 = (0, _utility.get)('.card__bookmark1');
-var bookmark2 = (0, _utility.get)('.card__bookmark2');
-var bookmark3 = (0, _utility.get)('.card__bookmark3'); // button__cards-show/answer
-
-var showAnswerCard1 = (0, _utility.get)('.btn__card--1 button');
-var showAnswerCard2 = (0, _utility.get)('.btn__card--2 button');
-var showAnswerCard3 = (0, _utility.get)('.btn__card--3 button'); // Answer sections
-
-var answerCard1 = (0, _utility.get)('.answer__card-1');
-var answerCard2 = (0, _utility.get)('.answer__card-2');
-var answerCard3 = (0, _utility.get)('.answer__card-3'); // form
-
-var formButtonSubmit = (0, _utility.get)('.card__button--submit'); // site headline
-
-var headerTitle = (0, _utility.get)('.header__title'); // Form
-
-var createForm = (0, _utility.get)('form'); // EVENTS
-
-navButtonHome.addEventListener('click', navigateTo('QUIZ - APP'));
-navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS'));
-navButtonAdd.addEventListener('click', navigateTo('CREATE'));
-navButtonProfile.addEventListener('click', navigateTo('PROFILE'));
-showAnswerCard1.addEventListener('click', forCard(1));
-showAnswerCard2.addEventListener('click', forCard(2));
-showAnswerCard3.addEventListener('click', forCard(3));
-bookmark1.addEventListener('click', toggleBookmark(event));
-bookmark2.addEventListener('click', toggleBookmark(event));
-bookmark3.addEventListener('click', toggleBookmark(event));
-formButtonSubmit.addEventListener('click', function (event) {
-  event.preventDefault();
-  (0, _utility.get)('textarea[name=question]').value = '';
-  (0, _utility.get)('textarea[name=answer]').value = '';
-  (0, _utility.get)('input[name=tags]').value = '';
-}); // LOGIC
-
-function navigateTo(site) {
-  if (site === 'QUIZ - APP') {
-    return function () {
-      headerTitle.textContent = site;
-      mainIndex.classList.remove('hidden');
-      mainBookmark.classList.add('hidden');
-      mainCreate.classList.add('hidden');
-      mainProfile.classList.add('hidden');
-      navButtonHome.src = _round_home_black_48dp.default;
-      navButtonSaved.src = _round_bookmarks_outline_48dp.default;
-      navButtonAdd.src = _round_add_box_outline_48dp.default;
-      navButtonProfile.src = _round_account_box_outline_48dp.default;
-    };
-  } else if (site === 'BOOKMARKS') {
-    return function () {
-      headerTitle.textContent = site;
-      mainIndex.classList.add('hidden');
-      mainBookmark.classList.remove('hidden');
-      mainCreate.classList.add('hidden');
-      mainProfile.classList.add('hidden');
-      navButtonHome.src = _round_home_outline_48dp.default;
-      navButtonSaved.src = _round_bookmarks_black_48dp.default;
-      navButtonAdd.src = _round_add_box_outline_48dp.default;
-      navButtonProfile.src = _round_account_box_outline_48dp.default;
-    };
-  } else if (site === 'CREATE') {
-    return function () {
-      headerTitle.textContent = site;
-      mainIndex.classList.add('hidden');
-      mainBookmark.classList.add('hidden');
-      mainCreate.classList.remove('hidden');
-      mainProfile.classList.add('hidden');
-      navButtonHome.src = _round_home_outline_48dp.default;
-      navButtonSaved.src = _round_bookmarks_outline_48dp.default;
-      navButtonAdd.src = _round_add_box_black_48dp.default;
-      navButtonProfile.src = _round_account_box_outline_48dp.default;
-    };
-  } else if (site === 'PROFILE') {
-    return function () {
-      headerTitle.textContent = site;
-      mainIndex.classList.add('hidden');
-      mainBookmark.classList.add('hidden');
-      mainCreate.classList.add('hidden');
-      mainProfile.classList.remove('hidden');
-      navButtonHome.src = _round_home_outline_48dp.default;
-      navButtonSaved.src = _round_bookmarks_outline_48dp.default;
-      navButtonAdd.src = _round_add_box_outline_48dp.default;
-      navButtonProfile.src = _round_account_box_black_48dp.default;
-    };
-  }
-}
-
-function forCard(number) {
-  if (number === 1) {
-    return function () {
-      if (showAnswerCard1.classList.contains('card__button--show-answer')) {
-        answerCard1.classList.remove('hidden');
-        showAnswerCard1.classList.remove('card__button--show-answer');
-        showAnswerCard1.classList.add('card__button--hide-answer');
-      } else {
-        answerCard1.classList.add('hidden');
-        showAnswerCard1.classList.add('card__button--show-answer');
-        showAnswerCard1.classList.remove('card__button--hide-answer');
-      }
-    };
-  } else if (number === 2) {
-    return function () {
-      if (showAnswerCard2.classList.contains('card__button--show-answer')) {
-        answerCard2.classList.remove('hidden');
-        showAnswerCard2.classList.remove('card__button--show-answer');
-        showAnswerCard2.classList.add('card__button--hide-answer');
-      } else {
-        answerCard2.classList.add('hidden');
-        showAnswerCard2.classList.add('card__button--show-answer');
-        showAnswerCard2.classList.remove('card__button--hide-answer');
-      }
-    };
-  } else if (number === 3) {
-    return function () {
-      if (showAnswerCard3.classList.contains('card__button--show-answer')) {
-        answerCard3.classList.remove('hidden');
-        showAnswerCard3.classList.remove('card__button--show-answer');
-        showAnswerCard3.classList.add('card__button--hide-answer');
-      } else {
-        answerCard3.classList.add('hidden');
-        showAnswerCard3.classList.add('card__button--show-answer');
-        showAnswerCard3.classList.remove('card__button--hide-answer');
-      }
-    };
-  }
-}
-
-function toggleBookmark(event) {
-  return function (event) {
-    event.target.classList.toggle('card__bookmark--active');
-    event.target.classList.toggle('card__bookmark--inactive');
-  };
-}
-},{"./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png","./utility":"src/js/utility.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _nav.default)();
+(0, _bookmark.default)();
+(0, _card.default)();
+(0, _form.default)();
+},{"./nav":"src/js/nav.js","./bookmark":"src/js/bookmark.js","./card":"src/js/card.js","./form":"src/js/form.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
