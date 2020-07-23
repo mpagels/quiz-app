@@ -124,9 +124,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.get = get;
+exports.getAll = getAll;
 
 function get(selector) {
   return document.querySelector(selector);
+}
+
+function getAll(selector) {
+  return document.querySelectorAll(selector);
 }
 },{}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_black_48dp.94b2d040.png";
@@ -186,61 +191,34 @@ function _default() {
 
   var headerTitle = (0, _utility.get)('.header__title'); // EVENTS
 
-  navButtonHome.addEventListener('click', navigateTo('QUIZ - APP'));
-  navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS'));
-  navButtonAdd.addEventListener('click', navigateTo('CREATE'));
-  navButtonProfile.addEventListener('click', navigateTo('PROFILE')); // LOGIC
+  navButtonHome.addEventListener('click', navigateTo('QUIZ - APP', mainIndex, navButtonHome));
+  navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS', mainBookmark, navButtonSaved));
+  navButtonAdd.addEventListener('click', navigateTo('CREATE', mainCreate, navButtonAdd));
+  navButtonProfile.addEventListener('click', navigateTo('PROFILE', mainProfile, navButtonProfile)); // LOGIC
 
-  function navigateTo(site) {
-    if (site === 'QUIZ - APP') {
-      return function () {
-        headerTitle.textContent = site;
-        mainIndex.classList.remove('hidden');
-        mainBookmark.classList.add('hidden');
-        mainCreate.classList.add('hidden');
-        mainProfile.classList.add('hidden');
-        navButtonHome.src = _round_home_black_48dp.default;
-        navButtonSaved.src = _round_bookmarks_outline_48dp.default;
-        navButtonAdd.src = _round_add_box_outline_48dp.default;
-        navButtonProfile.src = _round_account_box_outline_48dp.default;
-      };
-    } else if (site === 'BOOKMARKS') {
-      return function () {
-        headerTitle.textContent = site;
-        mainIndex.classList.add('hidden');
-        mainBookmark.classList.remove('hidden');
-        mainCreate.classList.add('hidden');
-        mainProfile.classList.add('hidden');
-        navButtonHome.src = _round_home_outline_48dp.default;
-        navButtonSaved.src = _round_bookmarks_black_48dp.default;
-        navButtonAdd.src = _round_add_box_outline_48dp.default;
-        navButtonProfile.src = _round_account_box_outline_48dp.default;
-      };
-    } else if (site === 'CREATE') {
-      return function () {
-        headerTitle.textContent = site;
-        mainIndex.classList.add('hidden');
-        mainBookmark.classList.add('hidden');
-        mainCreate.classList.remove('hidden');
-        mainProfile.classList.add('hidden');
-        navButtonHome.src = _round_home_outline_48dp.default;
-        navButtonSaved.src = _round_bookmarks_outline_48dp.default;
-        navButtonAdd.src = _round_add_box_black_48dp.default;
-        navButtonProfile.src = _round_account_box_outline_48dp.default;
-      };
-    } else if (site === 'PROFILE') {
-      return function () {
-        headerTitle.textContent = site;
-        mainIndex.classList.add('hidden');
-        mainBookmark.classList.add('hidden');
-        mainCreate.classList.add('hidden');
-        mainProfile.classList.remove('hidden');
-        navButtonHome.src = _round_home_outline_48dp.default;
-        navButtonSaved.src = _round_bookmarks_outline_48dp.default;
-        navButtonAdd.src = _round_add_box_outline_48dp.default;
-        navButtonProfile.src = _round_account_box_black_48dp.default;
-      };
-    }
+  function navigateTo(site, mainSection, navButton) {
+    return function () {
+      headerTitle.textContent = site;
+      mainIndex.classList.add('hidden');
+      mainBookmark.classList.add('hidden');
+      mainCreate.classList.add('hidden');
+      mainProfile.classList.add('hidden');
+      mainSection.classList.remove('hidden');
+      navButtonHome.src = _round_home_outline_48dp.default;
+      navButtonSaved.src = _round_bookmarks_outline_48dp.default;
+      navButtonAdd.src = _round_add_box_outline_48dp.default;
+      navButtonProfile.src = _round_account_box_outline_48dp.default;
+
+      if (navButton === navButtonHome) {
+        navButton.src = _round_home_black_48dp.default;
+      } else if (navButton === navButtonSaved) {
+        navButton.src = _round_bookmarks_black_48dp.default;
+      } else if (navButton === navButtonAdd) {
+        navButton.src = _round_add_box_black_48dp.default;
+      } else if (navButton === navButtonProfile) {
+        navButton.src = _round_account_box_black_48dp.default;
+      }
+    };
   }
 }
 },{"./utility":"src/js/utility.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/bookmark.js":[function(require,module,exports) {
@@ -254,13 +232,10 @@ exports.default = _default;
 var _utility = require("./utility");
 
 function _default() {
-  // button__cards_bookmark
-  var bookmark1 = (0, _utility.get)('.card__bookmark1');
-  var bookmark2 = (0, _utility.get)('.card__bookmark2');
-  var bookmark3 = (0, _utility.get)('.card__bookmark3');
-  bookmark1.addEventListener('click', toggleBookmark(event));
-  bookmark2.addEventListener('click', toggleBookmark(event));
-  bookmark3.addEventListener('click', toggleBookmark(event));
+  var bookmarks = (0, _utility.getAll)('[class*="card__bookmark--"]');
+  bookmarks.forEach(function (bookmark, event) {
+    bookmark.addEventListener('click', toggleBookmark(event));
+  });
 
   function toggleBookmark(event) {
     return function (event) {
@@ -280,56 +255,27 @@ exports.default = _default;
 var _utility = require("./utility");
 
 function _default() {
-  // button__cards-show/answer
-  var showAnswerCard1 = (0, _utility.get)('.btn__card--1 button');
-  var showAnswerCard2 = (0, _utility.get)('.btn__card--2 button');
-  var showAnswerCard3 = (0, _utility.get)('.btn__card--3 button'); // Answer sections
+  var cards = (0, _utility.getAll)('.card');
+  cards.forEach(toggleAnswer);
 
-  var answerCard1 = (0, _utility.get)('.answer__card-1');
-  var answerCard2 = (0, _utility.get)('.answer__card-2');
-  var answerCard3 = (0, _utility.get)('.answer__card-3');
-  showAnswerCard1.addEventListener('click', forCard(1));
-  showAnswerCard2.addEventListener('click', forCard(2));
-  showAnswerCard3.addEventListener('click', forCard(3));
+  function toggleAnswer(card) {
+    var buttonAnswer = card.querySelector('[class*="card__button--"]');
+    var answer = card.querySelector('.answer');
+    buttonAnswer.addEventListener('click', showAnswerForCard(buttonAnswer, answer));
+  }
 
-  function forCard(number) {
-    if (number === 1) {
-      return function () {
-        if (showAnswerCard1.classList.contains('card__button--show-answer')) {
-          answerCard1.classList.remove('hidden');
-          showAnswerCard1.classList.remove('card__button--show-answer');
-          showAnswerCard1.classList.add('card__button--hide-answer');
-        } else {
-          answerCard1.classList.add('hidden');
-          showAnswerCard1.classList.add('card__button--show-answer');
-          showAnswerCard1.classList.remove('card__button--hide-answer');
-        }
-      };
-    } else if (number === 2) {
-      return function () {
-        if (showAnswerCard2.classList.contains('card__button--show-answer')) {
-          answerCard2.classList.remove('hidden');
-          showAnswerCard2.classList.remove('card__button--show-answer');
-          showAnswerCard2.classList.add('card__button--hide-answer');
-        } else {
-          answerCard2.classList.add('hidden');
-          showAnswerCard2.classList.add('card__button--show-answer');
-          showAnswerCard2.classList.remove('card__button--hide-answer');
-        }
-      };
-    } else if (number === 3) {
-      return function () {
-        if (showAnswerCard3.classList.contains('card__button--show-answer')) {
-          answerCard3.classList.remove('hidden');
-          showAnswerCard3.classList.remove('card__button--show-answer');
-          showAnswerCard3.classList.add('card__button--hide-answer');
-        } else {
-          answerCard3.classList.add('hidden');
-          showAnswerCard3.classList.add('card__button--show-answer');
-          showAnswerCard3.classList.remove('card__button--hide-answer');
-        }
-      };
-    }
+  function showAnswerForCard(button, answerCard) {
+    return function () {
+      if (button.classList.contains('card__button--show-answer')) {
+        answerCard.classList.remove('hidden');
+        button.classList.remove('card__button--show-answer');
+        button.classList.add('card__button--hide-answer');
+      } else {
+        answerCard.classList.add('hidden');
+        button.classList.add('card__button--show-answer');
+        button.classList.remove('card__button--hide-answer');
+      }
+    };
   }
 }
 },{"./utility":"src/js/utility.js"}],"src/js/form.js":[function(require,module,exports) {
@@ -343,9 +289,6 @@ exports.default = _default;
 var _utility = require("./utility");
 
 function _default() {
-  // form
-  var formButtonSubmit = (0, _utility.get)('.card__button--submit'); // Form
-
   var form = (0, _utility.get)('form');
   form.addEventListener('submit', function (event) {
     event.preventDefault();
