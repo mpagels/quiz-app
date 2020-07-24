@@ -1,7 +1,7 @@
-export function get(selector) {
-  return document.querySelector(selector)
+export function get(selector, target = document) {
+  return target.querySelector(selector)
 }
 
-export function getAll(selector) {
-  return document.querySelectorAll(selector)
+export function getAll(selector, target = document) {
+  return target.querySelectorAll(selector)
 }
