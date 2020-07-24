@@ -7,6 +7,7 @@ nav {
 
 .nav__liste {
   margin: 0;
+
   padding: 0;
   display: flex;
   justify-content: space-evenly;
@@ -14,6 +15,8 @@ nav {
 
   @media (min-width: 768px) {
     width: 768px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
