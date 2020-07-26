@@ -17,13 +17,13 @@ export default function () {
   function showAnswerForCard(button, answerCard) {
     return () => {
       if (button.classList.contains('card__button--show-answer')) {
-        answerCard.classList.remove('hidden')
-        button.classList.remove('card__button--show-answer')
-        button.classList.add('card__button--hide-answer')
+        answerCard?.classList.remove('hidden')
+        button?.classList.remove('card__button--show-answer')
+        button?.classList.add('card__button--hide-answer')
       } else {
-        answerCard.classList.add('hidden')
-        button.classList.add('card__button--show-answer')
-        button.classList.remove('card__button--hide-answer')
+        answerCard?.classList.add('hidden')
+        button?.classList.add('card__button--show-answer')
+        button?.classList.remove('card__button--hide-answer')
       }
     }
   }

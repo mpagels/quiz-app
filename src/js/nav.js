@@ -26,19 +26,22 @@ export default function () {
   const headerTitle = get('.header__title')
 
   // EVENTS
-  navButtonHome.addEventListener(
+  navButtonHome?.addEventListener(
     'click',
     navigateTo('QUIZ - APP', mainIndex, navButtonHome)
   )
-  navButtonSaved.addEventListener(
+
+  navButtonSaved?.addEventListener(
     'click',
     navigateTo('BOOKMARKS', mainBookmark, navButtonSaved)
   )
-  navButtonAdd.addEventListener(
+
+  navButtonAdd?.addEventListener(
     'click',
     navigateTo('CREATE', mainCreate, navButtonAdd)
   )
-  navButtonProfile.addEventListener(
+
+  navButtonProfile?.addEventListener(
     'click',
     navigateTo('PROFILE', mainProfile, navButtonProfile)
   )
@@ -47,13 +50,15 @@ export default function () {
 
   function navigateTo(site, mainSection, navButton) {
     return () => {
-      headerTitle.textContent = site
+      if (headerTitle) {
+        headerTitle.textContent = site
+      }
 
-      mainIndex.classList.add('hidden')
-      mainBookmark.classList.add('hidden')
-      mainCreate.classList.add('hidden')
-      mainProfile.classList.add('hidden')
-      mainSection.classList.remove('hidden')
+      mainIndex?.classList.add('hidden')
+      mainBookmark?.classList.add('hidden')
+      mainCreate?.classList.add('hidden')
+      mainProfile?.classList.add('hidden')
+      mainSection?.classList.remove('hidden')
 
       navButtonHome.src = HOME_INACTIVE
       navButtonSaved.src = SAVED_INACTIVE

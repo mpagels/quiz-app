@@ -5,7 +5,9 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel index.html --public-url '.' index.html"
+    "build": "parcel index.html --public-url '.' index.html",
+    "storybook": "start-storybook -s . -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,16 @@
   },
   "homepage": "https://github.com/mpagels/quiz-app#readme",
   "dependencies": {
-    "images": "^3.2.2"
+    "@storybook/preset-scss": "^1.0.2",
+    "css-loader": "^4.0.0",
+    "images": "^3.2.2",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
+    "@storybook/html": "^5.3.19",
+    "babel-loader": "^8.1.0",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.26.10"
   }
