@@ -181,13 +181,13 @@ function _default() {
   function showAnswerForCard(button, answerCard) {
     return function () {
       if (button.classList.contains('card__button--show-answer')) {
-        answerCard.classList.remove('hidden');
-        button.classList.remove('card__button--show-answer');
-        button.classList.add('card__button--hide-answer');
+        answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.remove('hidden');
+        button === null || button === void 0 ? void 0 : button.classList.remove('card__button--show-answer');
+        button === null || button === void 0 ? void 0 : button.classList.add('card__button--hide-answer');
       } else {
-        answerCard.classList.add('hidden');
-        button.classList.add('card__button--show-answer');
-        button.classList.remove('card__button--hide-answer');
+        answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.add('hidden');
+        button === null || button === void 0 ? void 0 : button.classList.add('card__button--show-answer');
+        button === null || button === void 0 ? void 0 : button.classList.remove('card__button--hide-answer');
       }
     };
   }
@@ -204,7 +204,7 @@ var _utility = require("./utility");
 
 function _default() {
   var form = (0, _utility.get)('form');
-  form.addEventListener('submit', function (event) {
+  form === null || form === void 0 ? void 0 : form.addEventListener('submit', function (event) {
     event.preventDefault();
     (0, _utility.get)('textarea[name=question]').value = '';
     (0, _utility.get)('textarea[name=answer]').value = '';
@@ -269,19 +269,22 @@ function _default() {
 
   var headerTitle = (0, _utility.get)('.header__title'); // EVENTS
 
-  navButtonHome.addEventListener('click', navigateTo('QUIZ - APP', mainIndex, navButtonHome));
-  navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS', mainBookmark, navButtonSaved));
-  navButtonAdd.addEventListener('click', navigateTo('CREATE', mainCreate, navButtonAdd));
-  navButtonProfile.addEventListener('click', navigateTo('PROFILE', mainProfile, navButtonProfile)); // LOGIC
+  navButtonHome === null || navButtonHome === void 0 ? void 0 : navButtonHome.addEventListener('click', navigateTo('QUIZ - APP', mainIndex, navButtonHome));
+  navButtonSaved === null || navButtonSaved === void 0 ? void 0 : navButtonSaved.addEventListener('click', navigateTo('BOOKMARKS', mainBookmark, navButtonSaved));
+  navButtonAdd === null || navButtonAdd === void 0 ? void 0 : navButtonAdd.addEventListener('click', navigateTo('CREATE', mainCreate, navButtonAdd));
+  navButtonProfile === null || navButtonProfile === void 0 ? void 0 : navButtonProfile.addEventListener('click', navigateTo('PROFILE', mainProfile, navButtonProfile)); // LOGIC
 
   function navigateTo(site, mainSection, navButton) {
     return function () {
-      headerTitle.textContent = site;
-      mainIndex.classList.add('hidden');
-      mainBookmark.classList.add('hidden');
-      mainCreate.classList.add('hidden');
-      mainProfile.classList.add('hidden');
-      mainSection.classList.remove('hidden');
+      if (headerTitle) {
+        headerTitle.textContent = site;
+      }
+
+      mainIndex === null || mainIndex === void 0 ? void 0 : mainIndex.classList.add('hidden');
+      mainBookmark === null || mainBookmark === void 0 ? void 0 : mainBookmark.classList.add('hidden');
+      mainCreate === null || mainCreate === void 0 ? void 0 : mainCreate.classList.add('hidden');
+      mainProfile === null || mainProfile === void 0 ? void 0 : mainProfile.classList.add('hidden');
+      mainSection === null || mainSection === void 0 ? void 0 : mainSection.classList.remove('hidden');
       navButtonHome.src = _round_home_outline_48dp.default;
       navButtonSaved.src = _round_bookmarks_outline_48dp.default;
       navButtonAdd.src = _round_add_box_outline_48dp.default;
@@ -312,10 +315,40 @@ var _nav = _interopRequireDefault(require("./nav"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _nav.default)();
-(0, _bookmark.default)();
-(0, _card.default)();
-(0, _form.default)();
+document.addEventListener('DOMContentLoaded', function () {
+  // all my imported functions for the first time
+  (0, _nav.default)();
+  (0, _bookmark.default)();
+  (0, _card.default)();
+  (0, _form.default)();
+
+  var callback = function callback(mutationsList) {
+    for (var i = 0, len = mutationsList.length; i < len; i++) {
+      if (mutationsList[i].type == 'childList') {
+        // all my imported functions for the second time
+        (0, _nav.default)();
+        (0, _bookmark.default)();
+        (0, _card.default)();
+        (0, _form.default)();
+        break;
+      }
+    }
+  };
+
+  var observer = new MutationObserver(callback);
+  var config = {
+    childList: true,
+    subtree: false
+  };
+  observer.observe(document.getElementById('root'), config);
+}, false); // document.addEventListener('DOMContentLoaded', () => {
+//   setTimeout(() => {
+//     navInit()
+//     bookmarkLogic()
+//     cardLogic()
+//     formLogic()
+//   }, 100)
+// })
 },{"./bookmark":"src/js/bookmark.js","./card":"src/js/card.js","./form":"src/js/form.js","./nav":"src/js/nav.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -344,7 +377,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49423" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53843" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
