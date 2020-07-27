@@ -302,7 +302,65 @@ function _default() {
     };
   }
 }
-},{"./utility":"src/js/utility.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/index.js":[function(require,module,exports) {
+},{"./utility":"src/js/utility.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/card-data.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CARD_DATA = void 0;
+var CARD_DATA = [{
+  question: 'Do all HTML tags come in a pair?',
+  answer: 'No, there are single HTML tags that do not need a closing tag. Examples are the <img> tag and <br> tags.',
+  tags: ['HTML', 'Basics'],
+  bookmarked: '--active'
+}, {
+  question: 'What are style sheets?',
+  answer: 'Style sheets enable you to build consistent, transportable, and well-defined style templates. These templates can be linked to several different web pages, making it easy to maintain and change the look and feel of all the web pages within site.',
+  tags: ['HTML', 'CSS', 'Basics'],
+  bookmarked: '--inactive'
+}];
+exports.CARD_DATA = CARD_DATA;
+},{}],"src/js/card-create.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = cardContent;
+
+var _utility = require("./utility");
+
+var _cardData = require("./card-data");
+
+var cardSection = document.querySelector('.main__index');
+
+function cardContent() {
+  _cardData.CARD_DATA.forEach(buildCardwith);
+} // Helper functions
+
+
+function buildCardwith(data) {
+  var el = document.createElement('section');
+  el.className = 'card';
+  el.innerHTML = buildInnerHTML(data);
+  buildTags(data, (0, _utility.get)('ul', el));
+  cardSection.appendChild(el);
+}
+
+function buildInnerHTML(data) {
+  return "<button class=\"card__bookmark".concat(data.bookmarked, "\"></button>\n    <section class=\"card__content\">\n      <section class=\"card__question\">\n        ").concat(data.question, "\n        <span>\n          <ul>\n          </ul>\n        </span>\n      </section>\n      <section class=\"answer hidden\">\n      ").concat(data.answer, "\n      </section>\n      <section class=\"card__button\">\n        <button class=\"card__button--show-answer\"></button>\n      </section>\n    </section>");
+}
+
+function buildTags(data, ulElement) {
+  data.tags.forEach(function (tag) {
+    var li = document.createElement('li');
+    li.textContent = tag;
+    li.className = 'tags';
+    ulElement.appendChild(li);
+  });
+}
+},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _bookmark = _interopRequireDefault(require("./bookmark"));
@@ -313,43 +371,20 @@ var _form = _interopRequireDefault(require("./form"));
 
 var _nav = _interopRequireDefault(require("./nav"));
 
+var _cardCreate = _interopRequireDefault(require("./card-create"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
-  // all my imported functions for the first time
-  (0, _nav.default)();
-  (0, _bookmark.default)();
-  (0, _card.default)();
-  (0, _form.default)();
-
-  var callback = function callback(mutationsList) {
-    for (var i = 0, len = mutationsList.length; i < len; i++) {
-      if (mutationsList[i].type == 'childList') {
-        // all my imported functions for the second time
-        (0, _nav.default)();
-        (0, _bookmark.default)();
-        (0, _card.default)();
-        (0, _form.default)();
-        break;
-      }
-    }
-  };
-
-  var observer = new MutationObserver(callback);
-  var config = {
-    childList: true,
-    subtree: false
-  };
-  observer.observe(document.getElementById('root'), config);
-}, false); // document.addEventListener('DOMContentLoaded', () => {
-//   setTimeout(() => {
-//     navInit()
-//     bookmarkLogic()
-//     cardLogic()
-//     formLogic()
-//   }, 100)
-// })
-},{"./bookmark":"src/js/bookmark.js","./card":"src/js/card.js","./form":"src/js/form.js","./nav":"src/js/nav.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  setTimeout(function () {
+    (0, _nav.default)();
+    (0, _cardCreate.default)();
+    (0, _bookmark.default)();
+    (0, _card.default)();
+    (0, _form.default)();
+  }, 100);
+});
+},{"./bookmark":"src/js/bookmark.js","./card":"src/js/card.js","./form":"src/js/form.js","./nav":"src/js/nav.js","./card-create":"src/js/card-create.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -377,7 +412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53843" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54202" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
