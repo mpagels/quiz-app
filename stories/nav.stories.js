@@ -1,3 +1,10 @@
+// import navInit from '../src/js/nav.js'
+
+// setTimeout(() => {
+//   navInit()
+//   console.log('test')
+// }, 100)
+
 export default {
   title: 'Navigation',
 }

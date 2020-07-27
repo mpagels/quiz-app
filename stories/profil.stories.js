@@ -2,7 +2,7 @@ export default {
   title: 'Profil',
 }
 
-export const Tag_List = () => /*html*/ `
+export const Profil_Complete = () => /*html*/ `
       <div style="position: fixed;
       top: 50%;
       left: 50%;
