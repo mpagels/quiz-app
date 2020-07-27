@@ -1,2 +1,2 @@
 import '../src/scss/styles.scss'
-import '../src/js/index.js'
+import '../src/js/index-st.js'
