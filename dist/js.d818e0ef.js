@@ -192,7 +192,26 @@ function _default() {
     };
   }
 }
-},{"./utility":"src/js/utility.js"}],"src/js/form.js":[function(require,module,exports) {
+},{"./utility":"src/js/utility.js"}],"src/js/card-data.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CARD_DATA = void 0;
+var CARD_DATA = [{
+  question: 'Do all HTML tags come in a pair?',
+  answer: 'No, there are single HTML tags that do not need a closing tag. Examples are the <img> tag and <br> tags.',
+  tags: ['HTML', 'Basics'],
+  bookmarked: true
+}, {
+  question: 'What are style sheets?',
+  answer: 'Style sheets enable you to build consistent, transportable, and well-defined style templates. These templates can be linked to several different web pages, making it easy to maintain and change the look and feel of all the web pages within site.',
+  tags: ['HTML', 'CSS', 'Basics'],
+  bookmarked: false
+}];
+exports.CARD_DATA = CARD_DATA;
+},{}],"src/js/form.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -202,16 +221,69 @@ exports.default = _default;
 
 var _utility = require("./utility");
 
+var _cardData = require("./card-data");
+
 function _default() {
   var form = (0, _utility.get)('form');
   form === null || form === void 0 ? void 0 : form.addEventListener('submit', function (event) {
     event.preventDefault();
-    (0, _utility.get)('textarea[name=question]').value = '';
-    (0, _utility.get)('textarea[name=answer]').value = '';
-    (0, _utility.get)('input[name=tags]').value = '';
+    createCard(form.question.value, form.answer.value, form.tags.value);
+    form.reset();
   });
 }
-},{"./utility":"src/js/utility.js"}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
+
+function createCard(question, answer, tags) {
+  _cardData.CARD_DATA.push({
+    question: question,
+    answer: answer,
+    bookmarked: false,
+    tags: tags.split(',').map(function (tag) {
+      return tag.trim();
+    })
+  });
+}
+},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"src/js/card-create.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = cardContent;
+
+var _utility = require("./utility");
+
+var _cardData = require("./card-data");
+
+var cardSection = document.querySelector('.main__index');
+
+function cardContent() {
+  cardSection.innerHTML = '';
+
+  _cardData.CARD_DATA.forEach(buildCardwith);
+} // Helper functions
+
+
+function buildCardwith(data) {
+  var el = document.createElement('section');
+  el.className = 'card';
+  el.innerHTML = buildInnerHTML(data);
+  buildTags(data, (0, _utility.get)('ul', el));
+  cardSection.appendChild(el);
+}
+
+function buildInnerHTML(data) {
+  return "<button class=\"card__bookmark".concat(data.bookmarked ? '--active' : '--inactive', "\"></button>\n    <section class=\"card__content\">\n      <section class=\"card__question\">\n        ").concat(data.question, "\n        <span>\n          <ul>\n          </ul>\n        </span>\n      </section>\n      <section class=\"answer hidden\">\n      ").concat(data.answer, "\n      </section>\n      <section class=\"card__button\">\n        <button class=\"card__button--show-answer\"></button>\n      </section>\n    </section>");
+}
+
+function buildTags(data, ulElement) {
+  data.tags.forEach(function (tag) {
+    var li = document.createElement('li');
+    li.textContent = tag;
+    li.className = 'tags';
+    ulElement.appendChild(li);
+  });
+}
+},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_black_48dp.94b2d040.png";
 },{}],"images/buttons/round_home_outline_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_outline_48dp.4df0597d.png";
@@ -236,6 +308,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _default;
 
 var _utility = require("./utility");
+
+var _cardCreate = _interopRequireDefault(require("./card-create"));
+
+var _card = _interopRequireDefault(require("./card"));
+
+var _bookmark = _interopRequireDefault(require("./bookmark"));
 
 var _round_home_black_48dp = _interopRequireDefault(require("./../../images/buttons/round_home_black_48dp.png"));
 
@@ -292,6 +370,9 @@ function _default() {
 
       if (navButton === navButtonHome) {
         navButton.src = _round_home_black_48dp.default;
+        (0, _cardCreate.default)();
+        (0, _card.default)();
+        (0, _bookmark.default)();
       } else if (navButton === navButtonSaved) {
         navButton.src = _round_bookmarks_black_48dp.default;
       } else if (navButton === navButtonAdd) {
@@ -302,65 +383,7 @@ function _default() {
     };
   }
 }
-},{"./utility":"src/js/utility.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/card-data.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CARD_DATA = void 0;
-var CARD_DATA = [{
-  question: 'Do all HTML tags come in a pair?',
-  answer: 'No, there are single HTML tags that do not need a closing tag. Examples are the <img> tag and <br> tags.',
-  tags: ['HTML', 'Basics'],
-  bookmarked: '--active'
-}, {
-  question: 'What are style sheets?',
-  answer: 'Style sheets enable you to build consistent, transportable, and well-defined style templates. These templates can be linked to several different web pages, making it easy to maintain and change the look and feel of all the web pages within site.',
-  tags: ['HTML', 'CSS', 'Basics'],
-  bookmarked: '--inactive'
-}];
-exports.CARD_DATA = CARD_DATA;
-},{}],"src/js/card-create.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = cardContent;
-
-var _utility = require("./utility");
-
-var _cardData = require("./card-data");
-
-var cardSection = document.querySelector('.main__index');
-
-function cardContent() {
-  _cardData.CARD_DATA.forEach(buildCardwith);
-} // Helper functions
-
-
-function buildCardwith(data) {
-  var el = document.createElement('section');
-  el.className = 'card';
-  el.innerHTML = buildInnerHTML(data);
-  buildTags(data, (0, _utility.get)('ul', el));
-  cardSection.appendChild(el);
-}
-
-function buildInnerHTML(data) {
-  return "<button class=\"card__bookmark".concat(data.bookmarked, "\"></button>\n    <section class=\"card__content\">\n      <section class=\"card__question\">\n        ").concat(data.question, "\n        <span>\n          <ul>\n          </ul>\n        </span>\n      </section>\n      <section class=\"answer hidden\">\n      ").concat(data.answer, "\n      </section>\n      <section class=\"card__button\">\n        <button class=\"card__button--show-answer\"></button>\n      </section>\n    </section>");
-}
-
-function buildTags(data, ulElement) {
-  data.tags.forEach(function (tag) {
-    var li = document.createElement('li');
-    li.textContent = tag;
-    li.className = 'tags';
-    ulElement.appendChild(li);
-  });
-}
-},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"src/js/index.js":[function(require,module,exports) {
+},{"./utility":"src/js/utility.js","./card-create":"src/js/card-create.js","./card":"src/js/card.js","./bookmark":"src/js/bookmark.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _bookmark = _interopRequireDefault(require("./bookmark"));
@@ -412,7 +435,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54202" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50696" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
