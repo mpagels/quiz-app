@@ -4,6 +4,7 @@ import { CARD_DATA } from './card-data'
 const cardSection = document.querySelector('.main__index')
 
 export default function cardContent() {
+  cardSection.innerHTML = ''
   CARD_DATA.forEach(buildCardwith)
 }
 
@@ -17,7 +18,9 @@ function buildCardwith(data) {
 }
 
 function buildInnerHTML(data) {
-  return `<button class="card__bookmark${data.bookmarked}"></button>
+  return `<button class="card__bookmark${
+    data.bookmarked ? '--active' : '--inactive'
+  }"></button>
     <section class="card__content">
       <section class="card__question">
         ${data.question}

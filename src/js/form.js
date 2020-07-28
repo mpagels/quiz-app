@@ -15,6 +15,7 @@ function createCard(question, answer, tags) {
   CARD_DATA.push({
     question: question,
     answer: answer,
+    bookmarked: false,
     tags: tags.split(',').map((tag) => tag.trim()),
   })
 }
