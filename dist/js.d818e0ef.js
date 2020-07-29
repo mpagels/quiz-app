@@ -135,64 +135,7 @@ function getAll(selector) {
   var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
   return target.querySelectorAll(selector);
 }
-},{}],"src/js/bookmark.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _default;
-
-var _utility = require("./utility");
-
-function _default() {
-  var bookmarks = (0, _utility.getAll)('[class*="card__bookmark--"]');
-  bookmarks.forEach(function (bookmark, event) {
-    bookmark.addEventListener('click', toggleBookmark(event));
-  });
-
-  function toggleBookmark(event) {
-    return function (event) {
-      event.target.classList.toggle('card__bookmark--active');
-      event.target.classList.toggle('card__bookmark--inactive');
-    };
-  }
-}
-},{"./utility":"src/js/utility.js"}],"src/js/card.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _default;
-
-var _utility = require("./utility");
-
-function _default() {
-  var cards = (0, _utility.getAll)('.card');
-  cards.forEach(toggleAnswer);
-
-  function toggleAnswer(card) {
-    var buttonAnswer = card.querySelector('[class*="card__button--"]');
-    var answer = card.querySelector('.answer');
-    buttonAnswer.addEventListener('click', showAnswerForCard(buttonAnswer, answer));
-  }
-
-  function showAnswerForCard(button, answerCard) {
-    return function () {
-      if (button.classList.contains('card__button--show-answer')) {
-        answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.remove('hidden');
-        button === null || button === void 0 ? void 0 : button.classList.remove('card__button--show-answer');
-        button === null || button === void 0 ? void 0 : button.classList.add('card__button--hide-answer');
-      } else {
-        answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.add('hidden');
-        button === null || button === void 0 ? void 0 : button.classList.add('card__button--show-answer');
-        button === null || button === void 0 ? void 0 : button.classList.remove('card__button--hide-answer');
-      }
-    };
-  }
-}
-},{"./utility":"src/js/utility.js"}],"src/js/card-data.js":[function(require,module,exports) {
+},{}],"src/js/card-data.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -200,11 +143,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CARD_DATA = void 0;
 var CARD_DATA = [{
+  id: 1,
   question: 'Do all HTML tags come in a pair?',
-  answer: 'No, there are single HTML tags that do not need a closing tag. Examples are the <img> tag and <br> tags.',
+  answer: 'No, there are single HTML tags that do not need a closing tag. Examples are the &ltimg> tag and &ltbr> tags.',
   tags: ['HTML', 'Basics'],
   bookmarked: true
 }, {
+  id: 2,
   question: 'What are style sheets?',
   answer: 'Style sheets enable you to build consistent, transportable, and well-defined style templates. These templates can be linked to several different web pages, making it easy to maintain and change the look and feel of all the web pages within site.',
   tags: ['HTML', 'CSS', 'Basics'],
@@ -227,13 +172,14 @@ function _default() {
   var form = (0, _utility.get)('form');
   form === null || form === void 0 ? void 0 : form.addEventListener('submit', function (event) {
     event.preventDefault();
-    createCard(form.question.value, form.answer.value, form.tags.value);
+    createCardData(form.question.value, form.answer.value, form.tags.value);
     form.reset();
   });
 }
 
-function createCard(question, answer, tags) {
+function createCardData(question, answer, tags) {
   _cardData.CARD_DATA.push({
+    id: _cardData.CARD_DATA.length + 1,
     question: question,
     answer: answer,
     bookmarked: false,
@@ -242,48 +188,144 @@ function createCard(question, answer, tags) {
     })
   });
 }
-},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"src/js/card-create.js":[function(require,module,exports) {
+},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"src/js/anwer-toggleLogic.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = cardContent;
+exports.toggleAnswer = toggleAnswer;
+
+function toggleAnswer(card) {
+  var buttonAnswer = card.querySelector('[class*="card__button--"]');
+  var answer = card.querySelector('.answer');
+  buttonAnswer.addEventListener('click', showAnswerForCard(buttonAnswer, answer));
+}
+
+function showAnswerForCard(button, answerCard) {
+  return function () {
+    if (button.classList.contains('card__button--show-answer')) {
+      answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.remove('hidden');
+      button === null || button === void 0 ? void 0 : button.classList.remove('card__button--show-answer');
+      button === null || button === void 0 ? void 0 : button.classList.add('card__button--hide-answer');
+    } else {
+      answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.add('hidden');
+      button === null || button === void 0 ? void 0 : button.classList.add('card__button--show-answer');
+      button === null || button === void 0 ? void 0 : button.classList.remove('card__button--hide-answer');
+    }
+  };
+}
+},{}],"src/js/bookmark.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bookmarkLogic = bookmarkLogic;
+
+var _cardData = require("./card-data");
+
+var _cardCreate = require("./card-create");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function bookmarkLogic(card) {
+  var bookmark = card.querySelector('[class*="card__bookmark--"]');
+  bookmark.addEventListener('click', toggleBookmark);
+}
+
+function toggleBookmark(event) {
+  event.target.classList.toggle('card__bookmark--active');
+  event.target.classList.toggle('card__bookmark--inactive');
+  var id = event.target.dataset.id;
+  changeBookmark(id);
+
+  if (event.target.parentElement.parentElement.className === 'main__bookmark') {
+    (0, _cardCreate.cardLogic)(true);
+  }
+}
+
+function changeBookmark(id) {
+  var data = _objectSpread({}, _cardData.CARD_DATA[id - 1]);
+
+  data.bookmarked = data.bookmarked ? data.bookmarked = false : data.bookmarked = true;
+  _cardData.CARD_DATA[id - 1] = data;
+}
+},{"./card-data":"src/js/card-data.js","./card-create":"src/js/card-create.js"}],"src/js/card-create.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.cardLogic = cardLogic;
 
 var _utility = require("./utility");
+
+var _anwerToggleLogic = require("./anwer-toggleLogic");
+
+var _bookmark = require("./bookmark");
 
 var _cardData = require("./card-data");
 
 var cardSection = document.querySelector('.main__index');
+var bookmarkPage = document.querySelector('.main__bookmark');
 
-function cardContent() {
+function cardLogic() {
+  var buildBookmarks = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   cardSection.innerHTML = '';
-
-  _cardData.CARD_DATA.forEach(buildCardwith);
+  bookmarkPage.innerHTML = '';
+  !buildBookmarks ? _cardData.CARD_DATA.forEach(buildCardWith) : _cardData.CARD_DATA.filter(function (card) {
+    return card.bookmarked;
+  }).forEach(buildBookmarkCardWith);
 } // Helper functions
 
 
-function buildCardwith(data) {
-  var el = document.createElement('section');
-  el.className = 'card';
-  el.innerHTML = buildInnerHTML(data);
-  buildTags(data, (0, _utility.get)('ul', el));
+function buildCardWith(data) {
+  var el = buildCardBody(data);
   cardSection.appendChild(el);
 }
 
-function buildInnerHTML(data) {
-  return "<button class=\"card__bookmark".concat(data.bookmarked ? '--active' : '--inactive', "\"></button>\n    <section class=\"card__content\">\n      <section class=\"card__question\">\n        ").concat(data.question, "\n        <span>\n          <ul>\n          </ul>\n        </span>\n      </section>\n      <section class=\"answer hidden\">\n      ").concat(data.answer, "\n      </section>\n      <section class=\"card__button\">\n        <button class=\"card__button--show-answer\"></button>\n      </section>\n    </section>");
+function buildBookmarkCardWith(data) {
+  var el = buildCardBody(data);
+  bookmarkPage.appendChild(el);
 }
 
-function buildTags(data, ulElement) {
-  data.tags.forEach(function (tag) {
+function buildCardBody(data) {
+  var el = document.createElement('section');
+  el.className = 'card';
+  el.innerHTML = buildInnerHTML(data);
+
+  if (data.tags.length > 0) {
+    buildTags(data, (0, _utility.get)('ul', el));
+  }
+
+  (0, _anwerToggleLogic.toggleAnswer)(el);
+  (0, _bookmark.bookmarkLogic)(el);
+  return el;
+}
+
+function buildInnerHTML(_ref) {
+  var bookmarked = _ref.bookmarked,
+      question = _ref.question,
+      id = _ref.id,
+      answer = _ref.answer;
+  return "<button class=\"card__bookmark".concat(bookmarked ? '--active' : '--inactive', "\" data-id=").concat(id, "></button>\n    <section class=\"card__content\">\n      <section class=\"card__question\">\n        ").concat(question, "\n        <span>\n          <ul>\n          </ul>\n        </span>\n      </section>\n      <section class=\"answer hidden\">\n      ").concat(answer, "\n      </section>\n      <section class=\"card__button\">\n        <button class=\"card__button--show-answer\"></button>\n      </section>\n    </section>");
+}
+
+function buildTags(_ref2, ulElement) {
+  var tags = _ref2.tags;
+  tags.forEach(function (tag) {
     var li = document.createElement('li');
     li.textContent = tag;
     li.className = 'tags';
     ulElement.appendChild(li);
   });
 }
-},{"./utility":"src/js/utility.js","./card-data":"src/js/card-data.js"}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
+},{"./utility":"src/js/utility.js","./anwer-toggleLogic":"src/js/anwer-toggleLogic.js","./bookmark":"src/js/bookmark.js","./card-data":"src/js/card-data.js"}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_black_48dp.94b2d040.png";
 },{}],"images/buttons/round_home_outline_48dp.png":[function(require,module,exports) {
 module.exports = "/round_home_outline_48dp.4df0597d.png";
@@ -309,11 +351,7 @@ exports.default = _default;
 
 var _utility = require("./utility");
 
-var _cardCreate = _interopRequireDefault(require("./card-create"));
-
-var _card = _interopRequireDefault(require("./card"));
-
-var _bookmark = _interopRequireDefault(require("./bookmark"));
+var _cardCreate = require("./card-create");
 
 var _round_home_black_48dp = _interopRequireDefault(require("./../../images/buttons/round_home_black_48dp.png"));
 
@@ -370,11 +408,10 @@ function _default() {
 
       if (navButton === navButtonHome) {
         navButton.src = _round_home_black_48dp.default;
-        (0, _cardCreate.default)();
-        (0, _card.default)();
-        (0, _bookmark.default)();
+        (0, _cardCreate.cardLogic)();
       } else if (navButton === navButtonSaved) {
         navButton.src = _round_bookmarks_black_48dp.default;
+        (0, _cardCreate.cardLogic)(true);
       } else if (navButton === navButtonAdd) {
         navButton.src = _round_add_box_black_48dp.default;
       } else if (navButton === navButtonProfile) {
@@ -383,31 +420,25 @@ function _default() {
     };
   }
 }
-},{"./utility":"src/js/utility.js","./card-create":"src/js/card-create.js","./card":"src/js/card.js","./bookmark":"src/js/bookmark.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/index.js":[function(require,module,exports) {
+},{"./utility":"src/js/utility.js","./card-create":"src/js/card-create.js","./../../images/buttons/round_home_black_48dp.png":"images/buttons/round_home_black_48dp.png","./../../images/buttons/round_home_outline_48dp.png":"images/buttons/round_home_outline_48dp.png","./../../images/buttons/round_bookmarks_black_48dp.png":"images/buttons/round_bookmarks_black_48dp.png","./../../images/buttons/round_bookmarks_outline_48dp.png":"images/buttons/round_bookmarks_outline_48dp.png","./../../images/buttons/round_add_box_black_48dp.png":"images/buttons/round_add_box_black_48dp.png","./../../images/buttons/round_add_box_outline_48dp.png":"images/buttons/round_add_box_outline_48dp.png","./../../images/buttons/round_account_box_black_48dp.png":"images/buttons/round_account_box_black_48dp.png","./../../images/buttons/round_account_box_outline_48dp.png":"images/buttons/round_account_box_outline_48dp.png"}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
-
-var _bookmark = _interopRequireDefault(require("./bookmark"));
-
-var _card = _interopRequireDefault(require("./card"));
 
 var _form = _interopRequireDefault(require("./form"));
 
 var _nav = _interopRequireDefault(require("./nav"));
 
-var _cardCreate = _interopRequireDefault(require("./card-create"));
+var _cardCreate = require("./card-create");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(function () {
     (0, _nav.default)();
-    (0, _cardCreate.default)();
-    (0, _bookmark.default)();
-    (0, _card.default)();
+    (0, _cardCreate.cardLogic)();
     (0, _form.default)();
   }, 100);
 });
-},{"./bookmark":"src/js/bookmark.js","./card":"src/js/card.js","./form":"src/js/form.js","./nav":"src/js/nav.js","./card-create":"src/js/card-create.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./form":"src/js/form.js","./nav":"src/js/nav.js","./card-create":"src/js/card-create.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
