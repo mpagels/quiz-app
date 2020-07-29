@@ -1,11 +1,15 @@
 import formLogic from './form'
 import navInit from './nav'
-import { cardLogic } from './card-create'
+import { cardLogic, cardInit } from './card-create'
+
+import { CARD_DATA } from './card-data'
 
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     navInit()
-    cardLogic()
+    // cardLogic()
+    cardInit()
+
     formLogic()
   }, 100)
 })
