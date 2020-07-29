@@ -6,13 +6,14 @@ export default function () {
 
   form?.addEventListener('submit', (event) => {
     event.preventDefault()
-    createCard(form.question.value, form.answer.value, form.tags.value)
+    createCardData(form.question.value, form.answer.value, form.tags.value)
     form.reset()
   })
 }
 
-function createCard(question, answer, tags) {
+function createCardData(question, answer, tags) {
   CARD_DATA.push({
+    id: CARD_DATA.length + 1,
     question: question,
     answer: answer,
     bookmarked: false,
