@@ -3,7 +3,7 @@ export const CARD_DATA = [
     id: 1,
     question: 'Do all HTML tags come in a pair?',
     answer:
-      'No, there are single HTML tags that do not need a closing tag. Examples are the <img> tag and <br> tags.',
+      'No, there are single HTML tags that do not need a closing tag. Examples are the &ltimg> tag and &ltbr> tags.',
     tags: ['HTML', 'Basics'],
     bookmarked: true,
   },
