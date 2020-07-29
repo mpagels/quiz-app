@@ -2,6 +2,7 @@ import { get } from './utility'
 import { toggleAnswer } from './anwer-toggleLogic'
 import { bookmarkLogic } from './bookmark'
 import { CARD_DATA } from './card-data'
+import { Card } from './components/card'
 
 const cardSection = document.querySelector('.main__index')
 const bookmarkPage = document.querySelector('.main__bookmark')
@@ -67,3 +68,8 @@ function buildTags({ tags }, ulElement) {
   })
 }
 
+export function cardInit() {
+  CARD_DATA.forEach((data) => {
+    Card(data)
+  })
+}
