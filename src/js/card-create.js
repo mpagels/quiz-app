@@ -66,3 +66,4 @@ function buildTags({ tags }, ulElement) {
     ulElement.appendChild(li)
   })
 }
+
