@@ -1,36 +1,56 @@
 import { get } from './utility'
+import { toggleAnswer } from './anwer-toggleLogic'
+import { bookmarkLogic } from './bookmark'
 import { CARD_DATA } from './card-data'
 
 const cardSection = document.querySelector('.main__index')
+const bookmarkPage = document.querySelector('.main__bookmark')
 
-export default function cardContent() {
+export function cardLogic(buildBookmarks = false) {
   cardSection.innerHTML = ''
-  CARD_DATA.forEach(buildCardwith)
+  bookmarkPage.innerHTML = ''
+  !buildBookmarks
+    ? CARD_DATA.forEach(buildCardWith)
+    : CARD_DATA.filter((card) => card.bookmarked).forEach(buildBookmarkCardWith)
 }
 
 // Helper functions
-function buildCardwith(data) {
-  const el = document.createElement('section')
-  el.className = 'card'
-  el.innerHTML = buildInnerHTML(data)
-  buildTags(data, get('ul', el))
+function buildCardWith(data) {
+  const el = buildCardBody(data)
   cardSection.appendChild(el)
 }
 
-function buildInnerHTML(data) {
+function buildBookmarkCardWith(data) {
+  const el = buildCardBody(data)
+  bookmarkPage.appendChild(el)
+}
+
+function buildCardBody(data) {
+  const el = document.createElement('section')
+  el.className = 'card'
+  el.innerHTML = buildInnerHTML(data)
+  if (data.tags.length > 0) {
+    buildTags(data, get('ul', el))
+  }
+  toggleAnswer(el)
+  bookmarkLogic(el)
+  return el
+}
+
+function buildInnerHTML({ bookmarked, question, id, answer }) {
   return `<button class="card__bookmark${
-    data.bookmarked ? '--active' : '--inactive'
-  }"></button>
+    bookmarked ? '--active' : '--inactive'
+  }" data-id=${id}></button>
     <section class="card__content">
       <section class="card__question">
-        ${data.question}
+        ${question}
         <span>
           <ul>
           </ul>
         </span>
       </section>
       <section class="answer hidden">
-      ${data.answer}
+      ${answer}
       </section>
       <section class="card__button">
         <button class="card__button--show-answer"></button>
@@ -38,8 +58,8 @@ function buildInnerHTML(data) {
     </section>`
 }
 
-function buildTags(data, ulElement) {
-  data.tags.forEach((tag) => {
+function buildTags({ tags }, ulElement) {
+  tags.forEach((tag) => {
     const li = document.createElement('li')
     li.textContent = tag
     li.className = 'tags'
