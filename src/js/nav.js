@@ -1,6 +1,6 @@
 import { get } from './utility'
 
-import { cardLogic } from './card-create'
+import { cardLogic, cardInit } from './card-create'
 
 import HOME_ACTIVE from './../../images/buttons/round_home_black_48dp.png'
 import HOME_INACTIVE from './../../images/buttons/round_home_outline_48dp.png'
@@ -69,9 +69,12 @@ export default function () {
 
       if (navButton === navButtonHome) {
         navButton.src = HOME_ACTIVE
-        cardLogic()
+        //cardLogic()
+        mainIndex.innerHTML = ''
+        cardInit()
       } else if (navButton === navButtonSaved) {
         navButton.src = SAVED_ACTIVE
+        mainBookmark.innerHTML = ''
         cardLogic(true)
       } else if (navButton === navButtonAdd) {
         navButton.src = ADD_ACTIVE
