@@ -57,7 +57,7 @@ body {
   position: absolute;
   top: -10px;
   right: 10px;
-  background-image: url(round_bookmark_black_48dp.5d564bc2.png);
+  background-image: url(/round_bookmark_black_48dp.5d564bc2.png);
   width: 48px;
   height: 48px;
   background-color: transparent;
@@ -68,7 +68,7 @@ body {
   position: absolute;
   top: -10px;
   right: 10px;
-  background-image: url(round_bookmark_border_black_48dp.b2efbab6.png);
+  background-image: url(/round_bookmark_border_black_48dp.b2efbab6.png);
   width: 48px;
   height: 48px;
   background-color: transparent;
@@ -372,4 +372,4 @@ main {
   }
 }
 
-/*# sourceMappingURL=styles.cbb799b3.css.map */
+/*# sourceMappingURL=/styles.cbb799b3.css.map */

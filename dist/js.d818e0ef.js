@@ -125,6 +125,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.get = get;
 exports.getAll = getAll;
+exports.createElement = createElement;
 
 function get(selector) {
   var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
@@ -134,6 +135,26 @@ function get(selector) {
 function getAll(selector) {
   var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
   return target.querySelectorAll(selector);
+}
+
+function createElement(_ref) {
+  var _ref$type = _ref.type,
+      type = _ref$type === void 0 ? 'div' : _ref$type,
+      _ref$className = _ref.className,
+      className = _ref$className === void 0 ? '' : _ref$className,
+      _ref$target = _ref.target,
+      target = _ref$target === void 0 ? document.body : _ref$target,
+      _ref$id = _ref.id,
+      id = _ref$id === void 0 ? false : _ref$id;
+  var el = document.createElement(type);
+  el.className = className;
+
+  if (id) {
+    el.setAttribute('data-id', id);
+  }
+
+  target.appendChild(el);
+  return el;
 }
 },{}],"src/js/card-data.js":[function(require,module,exports) {
 "use strict";
@@ -255,13 +276,170 @@ function changeBookmark(id) {
   data.bookmarked = data.bookmarked ? data.bookmarked = false : data.bookmarked = true;
   _cardData.CARD_DATA[id - 1] = data;
 }
-},{"./card-data":"src/js/card-data.js","./card-create":"src/js/card-create.js"}],"src/js/card-create.js":[function(require,module,exports) {
+},{"./card-data":"src/js/card-data.js","./card-create":"src/js/card-create.js"}],"src/js/components/bookmark.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Bookmark = Bookmark;
+
+var _utility = require("../utility");
+
+var _cardData = require("../card-data");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function Bookmark(_ref) {
+  var bookmarked = _ref.bookmarked,
+      id = _ref.id,
+      target = _ref.target;
+  var classModifier = bookmarked ? '--active' : '--inactive';
+  var className = 'card__bookmark' + classModifier;
+  var el = (0, _utility.createElement)({
+    type: 'button',
+    className: className,
+    id: id,
+    target: target
+  });
+  el.addEventListener('click', toggleBookmark(event));
+  return el;
+}
+
+function toggleBookmark(event) {
+  return function (event) {
+    event.target.classList.toggle('card__bookmark--active');
+    event.target.classList.toggle('card__bookmark--inactive');
+    var id = event.target.dataset.id;
+    changeBookmark(id);
+
+    if (event.target.parentElement.parentElement.className === 'main__bookmark') {
+      cardLogic(true);
+    }
+  };
+}
+
+function changeBookmark(id) {
+  var data = _objectSpread({}, _cardData.CARD_DATA[id - 1]);
+
+  data.bookmarked = data.bookmarked ? data.bookmarked = false : data.bookmarked = true;
+  console.log('changeBookmark -> data', data);
+  _cardData.CARD_DATA[id - 1] = data;
+}
+},{"../utility":"src/js/utility.js","../card-data":"src/js/card-data.js"}],"src/js/components/tag.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Tag = Tag;
+
+var _utility = require("../utility");
+
+function Tag(_ref) {
+  var tag = _ref.tag,
+      target = _ref.target;
+  var el = (0, _utility.createElement)({
+    type: 'li',
+    className: 'tags',
+    target: target
+  });
+  el.textContent = tag;
+  return {
+    el: el
+  };
+}
+},{"../utility":"src/js/utility.js"}],"src/js/components/card.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Card = Card;
+
+var _utility = require("../utility");
+
+var _bookmark = require("./bookmark");
+
+var _tag = require("./tag");
+
+var cardSection = document.querySelector('.main__index');
+
+function Card(_ref) {
+  var id = _ref.id,
+      question = _ref.question,
+      answer = _ref.answer,
+      tags = _ref.tags,
+      bookmarked = _ref.bookmarked;
+  var el = (0, _utility.createElement)({
+    type: 'section',
+    className: 'card',
+    target: cardSection
+  });
+  (0, _bookmark.Bookmark)({
+    bookmarked: bookmarked,
+    id: id,
+    target: el
+  });
+  el.insertAdjacentHTML('beforeend', cardInnerHTML({
+    question: question,
+    answer: answer
+  }));
+
+  if (tags.length > 0) {
+    buildTags(tags, (0, _utility.get)('ul', el));
+  }
+
+  toggleAnswerLogic(el);
+} // Helper functions
+
+
+function buildTags(tags, ulElement) {
+  tags.forEach(function (tag) {
+    (0, _tag.Tag)({
+      tag: tag,
+      target: ulElement
+    });
+  });
+}
+
+function toggleAnswerLogic(target) {
+  var buttonAnswer = target.querySelector('[class*="card__button--"]');
+  var answer = target.querySelector('.answer');
+  buttonAnswer.addEventListener('click', showAnswerForCard(buttonAnswer, answer));
+}
+
+function showAnswerForCard(button, answerCard) {
+  return function () {
+    if (button.classList.contains('card__button--show-answer')) {
+      answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.remove('hidden');
+      button === null || button === void 0 ? void 0 : button.classList.remove('card__button--show-answer');
+      button === null || button === void 0 ? void 0 : button.classList.add('card__button--hide-answer');
+    } else {
+      answerCard === null || answerCard === void 0 ? void 0 : answerCard.classList.add('hidden');
+      button === null || button === void 0 ? void 0 : button.classList.add('card__button--show-answer');
+      button === null || button === void 0 ? void 0 : button.classList.remove('card__button--hide-answer');
+    }
+  };
+}
+
+function cardInnerHTML(_ref2) {
+  var question = _ref2.question,
+      answer = _ref2.answer;
+  return "<section class=\"card__content\">\n   <section class=\"card__question\">\n     ".concat(question, "\n     <span>\n       <ul>\n       </ul>\n     </span>\n   </section>\n   <section class=\"answer hidden\">\n   ").concat(answer, "\n   </section>\n   <section class=\"card__button\">\n     <button class=\"card__button--show-answer\"></button>\n   </section>\n  </section>");
+}
+},{"../utility":"src/js/utility.js","./bookmark":"src/js/components/bookmark.js","./tag":"src/js/components/tag.js"}],"src/js/card-create.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.cardLogic = cardLogic;
+exports.cardInit = cardInit;
 
 var _utility = require("./utility");
 
@@ -270,6 +448,8 @@ var _anwerToggleLogic = require("./anwer-toggleLogic");
 var _bookmark = require("./bookmark");
 
 var _cardData = require("./card-data");
+
+var _card = require("./components/card");
 
 var cardSection = document.querySelector('.main__index');
 var bookmarkPage = document.querySelector('.main__bookmark');
@@ -325,22 +505,28 @@ function buildTags(_ref2, ulElement) {
     ulElement.appendChild(li);
   });
 }
-},{"./utility":"src/js/utility.js","./anwer-toggleLogic":"src/js/anwer-toggleLogic.js","./bookmark":"src/js/bookmark.js","./card-data":"src/js/card-data.js"}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
-module.exports = "round_home_black_48dp.94b2d040.png";
+
+function cardInit() {
+  _cardData.CARD_DATA.forEach(function (data) {
+    (0, _card.Card)(data);
+  });
+}
+},{"./utility":"src/js/utility.js","./anwer-toggleLogic":"src/js/anwer-toggleLogic.js","./bookmark":"src/js/bookmark.js","./card-data":"src/js/card-data.js","./components/card":"src/js/components/card.js"}],"images/buttons/round_home_black_48dp.png":[function(require,module,exports) {
+module.exports = "/round_home_black_48dp.94b2d040.png";
 },{}],"images/buttons/round_home_outline_48dp.png":[function(require,module,exports) {
-module.exports = "round_home_outline_48dp.4df0597d.png";
+module.exports = "/round_home_outline_48dp.4df0597d.png";
 },{}],"images/buttons/round_bookmarks_black_48dp.png":[function(require,module,exports) {
-module.exports = "round_bookmarks_black_48dp.904188d1.png";
+module.exports = "/round_bookmarks_black_48dp.904188d1.png";
 },{}],"images/buttons/round_bookmarks_outline_48dp.png":[function(require,module,exports) {
-module.exports = "round_bookmarks_outline_48dp.7c000e48.png";
+module.exports = "/round_bookmarks_outline_48dp.7c000e48.png";
 },{}],"images/buttons/round_add_box_black_48dp.png":[function(require,module,exports) {
-module.exports = "round_add_box_black_48dp.521a1e91.png";
+module.exports = "/round_add_box_black_48dp.521a1e91.png";
 },{}],"images/buttons/round_add_box_outline_48dp.png":[function(require,module,exports) {
-module.exports = "round_add_box_outline_48dp.a8018d88.png";
+module.exports = "/round_add_box_outline_48dp.a8018d88.png";
 },{}],"images/buttons/round_account_box_black_48dp.png":[function(require,module,exports) {
-module.exports = "round_account_box_black_48dp.73e5eef3.png";
+module.exports = "/round_account_box_black_48dp.73e5eef3.png";
 },{}],"images/buttons/round_account_box_outline_48dp.png":[function(require,module,exports) {
-module.exports = "round_account_box_outline_48dp.92284b6e.png";
+module.exports = "/round_account_box_outline_48dp.92284b6e.png";
 },{}],"src/js/nav.js":[function(require,module,exports) {
 "use strict";
 
@@ -407,10 +593,13 @@ function _default() {
       navButtonProfile.src = _round_account_box_outline_48dp.default;
 
       if (navButton === navButtonHome) {
-        navButton.src = _round_home_black_48dp.default;
-        (0, _cardCreate.cardLogic)();
+        navButton.src = _round_home_black_48dp.default; //cardLogic()
+
+        mainIndex.innerHTML = '';
+        (0, _cardCreate.cardInit)();
       } else if (navButton === navButtonSaved) {
         navButton.src = _round_bookmarks_black_48dp.default;
+        mainBookmark.innerHTML = '';
         (0, _cardCreate.cardLogic)(true);
       } else if (navButton === navButtonAdd) {
         navButton.src = _round_add_box_black_48dp.default;
@@ -429,16 +618,19 @@ var _nav = _interopRequireDefault(require("./nav"));
 
 var _cardCreate = require("./card-create");
 
+var _cardData = require("./card-data");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(function () {
-    (0, _nav.default)();
-    (0, _cardCreate.cardLogic)();
+    (0, _nav.default)(); // cardLogic()
+
+    (0, _cardCreate.cardInit)();
     (0, _form.default)();
   }, 100);
 });
-},{"./form":"src/js/form.js","./nav":"src/js/nav.js","./card-create":"src/js/card-create.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./form":"src/js/form.js","./nav":"src/js/nav.js","./card-create":"src/js/card-create.js","./card-data":"src/js/card-data.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -466,7 +658,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51502" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -643,4 +835,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/index.js"], null)
-//# sourceMappingURL=js.d818e0ef.js.map
+//# sourceMappingURL=/js.d818e0ef.js.map
