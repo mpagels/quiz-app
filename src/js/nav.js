@@ -11,7 +11,7 @@ import ADD_INACTIVE from './../../images/buttons/round_add_box_outline_48dp.png'
 import PROFILE_ACTIVE from './../../images/buttons/round_account_box_black_48dp.png'
 import PROFILE_INACTIVE from './../../images/buttons/round_account_box_outline_48dp.png'
 
-export default function () {
+export default function ({ getAllCards }) {
   // main elements
   const mainIndex = get('.main__index')
   const mainBookmark = get('.main__bookmark')
@@ -71,7 +71,7 @@ export default function () {
         navButton.src = HOME_ACTIVE
         //cardLogic()
         mainIndex.innerHTML = ''
-        cardInit()
+        cardInit({ getAllCards })
       } else if (navButton === navButtonSaved) {
         navButton.src = SAVED_ACTIVE
         mainBookmark.innerHTML = ''
