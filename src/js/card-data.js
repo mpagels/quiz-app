@@ -16,3 +16,30 @@ export const CARD_DATA = [
     bookmarked: false,
   },
 ]
+
+export function DataInterface() {
+  return { getAllCards, changeBookmark, insertCard }
+
+  function getAllCards() {
+    return CARD_DATA
+  }
+
+  function insertCard({ question, answer, tags }) {
+    CARD_DATA.push({
+      id: CARD_DATA.length + 1,
+      question,
+      answer,
+      bookmarked: false,
+      tags: tags.split(',').map((tag) => tag.trim()),
+    })
+  }
+
+  function changeBookmark(id) {
+    const cardToChange = { ...CARD_DATA[id - 1] }
+    cardToChange.bookmarked = cardToChange.bookmarked
+      ? (cardToChange.bookmarked = false)
+      : (cardToChange.bookmarked = true)
+    console.log('changeBookmark -> data', cardToChange)
+    CARD_DATA[id - 1] = cardToChange
+  }
+}
