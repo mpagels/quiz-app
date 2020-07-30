@@ -68,8 +68,8 @@ function buildTags({ tags }, ulElement) {
   })
 }
 
-export function cardInit() {
-  CARD_DATA.forEach((data) => {
+export function cardInit({ getAllCards }) {
+  getAllCards().forEach((data) => {
     Card(data)
   })
 }
